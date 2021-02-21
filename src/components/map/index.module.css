@@ -1,0 +1,10 @@
+.label {
+  position: absolute;
+  top: 5.5rem;
+  left: 0.5rem;
+  color: black;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  font-size: medium;
+}
