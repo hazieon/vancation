@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 // import { Map, GoogleApiWrapper } from "google-maps-react";
 import customMapStyle from "../../mapstyles";
 import {
@@ -8,6 +8,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 import styles from "./index.module.css";
+import { formatRelative } from "date-fns";
 
 //<div>
 //Icons from
@@ -46,6 +47,7 @@ const options = {
 function MapContainer() {
   const [map, setMap] = useState(null);
   const [point, setPoint] = useState([]);
+  const [view, setView] = useState(null);
 
   //load script and error script from google maps npm
   const { isLoaded, loadError } = useJsApiLoader({
@@ -53,9 +55,12 @@ function MapContainer() {
     googleMapsApiKey: MAPKEY,
     libraries,
   });
-
+  //setting up functionality for searching:
+  //retain state of the map WITHOUT causing rerenders
+  const mapRef = useRef(() => {});
   //functions to load the map from the docs
   const onLoad = useCallback(function callback(map) {
+    mapRef.current = map;
     const bounds = new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
     setMap(map);
@@ -64,6 +69,9 @@ function MapContainer() {
   const onUnmount = useCallback(function callback(map) {
     setMap(null);
   }, []);
+
+  //useCallback to avoid repeating similar code
+  //it's for defining a function that won't change unless properties within in 'depth array's change, dependency array?; thus won't trigger rerenders unnecessarily!
 
   if (loadError) {
     console.log(loadError);
@@ -87,7 +95,6 @@ function MapContainer() {
         onUnmount={onUnmount}
         // options={options}
         onClick={(e) => {
-          //   console.log(e);
           setPoint({
             lat: e.latLng.lat(),
             lng: e.latLng.lng(),
@@ -109,12 +116,26 @@ function MapContainer() {
               origin: new window.google.maps.Point(0, 0),
               anchor: new window.google.maps.Point(12, 12),
             }}
+            onClick={() => {
+              let viewArr = [];
+              viewArr.push(point);
+              setView(viewArr);
+              console.log(viewArr, "viewArray");
+              console.log(view, "view state");
+            }}
           />
         ) : (
           " "
         )}
 
-        <></>
+        {view ? (
+          <InfoWindow position={view ? { lat: view.lat, lng: view.lng } : null}>
+            <div>
+              <h2>Vancation Spot!</h2>
+              <p>Location found {view ? view.time : ""} </p>
+            </div>
+          </InfoWindow>
+        ) : null}
       </GoogleMap>
     </>
   ) : (
@@ -146,3 +167,17 @@ export default MapContainer;
 //         );
 //       })
 //     : ""}
+
+//on click functionality moved outside (didn't work):
+//   const onMapClick = useCallback((e) => {
+//     //   console.log(e);
+//     setPoint([
+//       {
+//         lat: e.latLng.lat(),
+//         lng: e.latLng.lng(),
+//         time: new Date(),
+//         placeId: e.placeId,
+//       },
+//     ]);
+//     console.log(point, "points");
+//   }, []);
