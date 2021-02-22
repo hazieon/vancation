@@ -104,14 +104,14 @@ function MapContainer() {
             key={point.time.toISOString()}
             position={{ lat: point.lat, lng: point.lng }}
             icon={{
-              url: "",
+              url: "./van2.svg",
               scaledSize: new window.google.maps.Size(25, 25),
               origin: new window.google.maps.Point(0, 0),
               anchor: new window.google.maps.Point(12, 12),
             }}
           />
         ) : (
-          ""
+          " "
         )}
 
         <></>
