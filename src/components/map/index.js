@@ -136,14 +136,11 @@ function MapContainer() {
             }}
           />
         ) : (
-          ""
+          " "
         )}
 
         {display ? (
-          <InfoWindow
-            position={{ lat: view[0].lat, lng: view[0].lng }}
-            onCloseClick={() => setDisplay(false)}
-          >
+          <InfoWindow position={{ lat: view[0].lat, lng: view[0].lng }}>
             <div>
               <h2>Vancation Spot!</h2>
               <p>
