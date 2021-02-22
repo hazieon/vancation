@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="x" />
+    <link rel="icon" href="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
@@ -39,5 +39,14 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script
+      src="https://apis.google.com/js/api.js"
+      type="text/javascript"
+    ></script>
+    <script type="text/javascript">
+      gapi.load("auth2", function () {
+        // Library loaded.
+      });
+    </script>
   </body>
 </html>
