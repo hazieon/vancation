@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef, useEffect } from "react";
 // import { Map, GoogleApiWrapper } from "google-maps-react";
 import customMapStyle from "../../mapstyles";
 import {
@@ -47,7 +47,8 @@ const options = {
 function MapContainer() {
   const [map, setMap] = useState(null);
   const [point, setPoint] = useState([]);
-  const [view, setView] = useState(null);
+  const [view, setView] = useState([]);
+  const [display, setDisplay] = useState(false);
 
   //load script and error script from google maps npm
   const { isLoaded, loadError } = useJsApiLoader({
@@ -57,6 +58,8 @@ function MapContainer() {
   });
   //setting up functionality for searching:
   //retain state of the map WITHOUT causing rerenders
+  //useCallback to avoid repeating similar code
+  //it's for defining a function that won't change unless properties within in 'depth array's change, dependency array?; thus won't trigger rerenders unnecessarily!
   const mapRef = useRef(() => {});
   //functions to load the map from the docs
   const onLoad = useCallback(function callback(map) {
@@ -70,12 +73,23 @@ function MapContainer() {
     setMap(null);
   }, []);
 
-  //useCallback to avoid repeating similar code
-  //it's for defining a function that won't change unless properties within in 'depth array's change, dependency array?; thus won't trigger rerenders unnecessarily!
+  //useEffect to set the view state asynchronously (as it was one step behind)
+  useEffect(() => {
+    if (point.lat) {
+      let viewArr = [];
+      viewArr.push(point);
+      setView(viewArr);
+      setDisplay(false);
+      console.log(viewArr, "viewArray");
+      console.log(view, "view state");
+    } else {
+      return;
+    }
+  }, [point]);
 
   if (loadError) {
     console.log(loadError);
-    return "Error loading map";
+    return "Error loading map ";
   }
 
   return isLoaded ? (
@@ -117,22 +131,24 @@ function MapContainer() {
               anchor: new window.google.maps.Point(12, 12),
             }}
             onClick={() => {
-              let viewArr = [];
-              viewArr.push(point);
-              setView(viewArr);
-              console.log(viewArr, "viewArray");
-              console.log(view, "view state");
+              setDisplay(true);
+              console.log("marker click ");
             }}
           />
         ) : (
           " "
         )}
 
-        {view ? (
-          <InfoWindow position={view ? { lat: view.lat, lng: view.lng } : null}>
+        {display ? (
+          <InfoWindow position={{ lat: view[0].lat, lng: view[0].lng }}>
             <div>
               <h2>Vancation Spot!</h2>
-              <p>Location found {view ? view.time : ""} </p>
+              <p>
+                {view[0].time
+                  ? String(formatRelative(view[0].time, new Date()))
+                  : ""}
+              </p>
+              <button className={styles.detailButton}>Details</button>
             </div>
           </InfoWindow>
         ) : null}
