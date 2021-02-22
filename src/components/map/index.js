@@ -9,6 +9,19 @@ import {
 } from "@react-google-maps/api";
 import styles from "./index.module.css";
 import { formatRelative } from "date-fns";
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
+} from "@reach/combobox";
+import "@reach/combobox/styles.css";
+import Search from "../search";
 
 //<div>
 //Icons from
@@ -23,7 +36,7 @@ const MAPKEY = process.env.REACT_APP_MAPKEY;
 
 //set the map window size
 const mapStyles = {
-  width: "400px", //100vw, 100vh
+  width: "400px ", //100vw, 100vh
   height: "400px",
 };
 
@@ -89,7 +102,7 @@ function MapContainer() {
 
   if (loadError) {
     console.log(loadError);
-    return "Error loading map ";
+    return "Error loading map";
   }
 
   return isLoaded ? (
@@ -100,7 +113,7 @@ function MapContainer() {
         </span>
         Vancation
       </h1>
-
+      <Search />
       <GoogleMap
         mapContainerStyle={mapStyles}
         center={mapCentre}
@@ -136,7 +149,7 @@ function MapContainer() {
             }}
           />
         ) : (
-          ""
+          " "
         )}
 
         {display ? (
