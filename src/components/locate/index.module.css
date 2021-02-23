@@ -1,0 +1,12 @@
+.locate {
+  position: absolute;
+  top: 0.7rem;
+  right: 0.7rem;
+  background: none;
+  border: none;
+  z-index: 2;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+  font-size: x-large;
+}
