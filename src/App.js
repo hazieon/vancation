@@ -4,7 +4,12 @@ import MapContainer from "./components/map";
 function App() {
   return (
     <div className="App">
-      <h1>Vancation</h1>
+      <nav className="nav">
+        <span>🏠</span>
+        <p>nav</p>
+        <p>nav</p>
+      </nav>
+      <h1 className="heading">Vancation</h1>
       <MapContainer />
     </div>
   );

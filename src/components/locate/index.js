@@ -3,25 +3,23 @@ import styles from "./index.module.css";
 
 function Locate(map) {
   return (
-    <>
-      <button
-        className={styles.locate}
-        onClick={() => {
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              map.panTo({
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-              });
-              console.log("locate");
-            },
-            () => null
-          );
-        }}
-      >
-        🧭
-      </button>
-    </>
+    <div
+      className={styles.container}
+      onClick={() => {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            map.panTo({
+              lat: position.coords.latitude,
+              lng: position.coords.longitude,
+            });
+            console.log("locate");
+          },
+          () => null
+        );
+      }}
+    >
+      <button className={styles.locate}>🧭</button>
+    </div>
   );
 }
 

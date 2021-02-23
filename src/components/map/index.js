@@ -39,6 +39,7 @@ const MAPKEY = process.env.REACT_APP_MAPKEY;
 const mapStyles = {
   width: "400px ", //100vw, 100vh
   height: "400px",
+  borderRadius: "10px",
 };
 
 //set the map initial location
