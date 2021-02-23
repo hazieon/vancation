@@ -23,6 +23,7 @@ import {
 import "@reach/combobox/styles.css";
 import Search from "../search/index";
 import Locate from "../locate";
+import Panel from "../panel";
 
 //<div>
 //Icons from
@@ -114,71 +115,81 @@ function MapContainer() {
   }
 
   return isLoaded ? (
-    <div className={styles.container}>
-      <h1 className={styles.label}>
-        <span role="img" aria-label="van">
-          🚐
-        </span>
-        Vancation
-      </h1>
-      <Locate map={map} panTo={panTo} />
-      <Search />
-      <GoogleMap
-        mapContainerStyle={mapStyles}
-        center={mapCentre}
-        zoom={10}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-        options={options}
-        onClick={(e) => {
-          setPoint({
-            lat: e.latLng.lat(),
-            lng: e.latLng.lng(),
-            time: new Date(),
-            placeId: e.placeId,
-          });
-          console.log(point, "points");
-        }}
-      >
-        {/* Child components, e.g. markers, info windows: */}
+    <div className={styles.page}>
+      <div className={styles.container}>
+        <h1 className={styles.label}>
+          <span role="img" aria-label="van">
+            🚐
+          </span>
+          Vancation
+        </h1>
+        <Locate map={map} panTo={panTo} />
+        <Search />
+        <GoogleMap
+          mapContainerStyle={mapStyles}
+          center={mapCentre}
+          zoom={10}
+          onLoad={onLoad}
+          onUnmount={onUnmount}
+          options={options}
+          onClick={(e) => {
+            setPoint({
+              lat: e.latLng.lat(),
+              lng: e.latLng.lng(),
+              time: new Date(),
+              placeId: e.placeId,
+            });
+            console.log(point, "points ");
+          }}
+        >
+          {/* Child components, e.g. markers, info windows: */}
 
-        {point.time ? (
-          <Marker
-            key={point.time.toISOString()}
-            position={{ lat: point.lat, lng: point.lng }}
-            icon={{
-              url: "./van2.svg",
-              scaledSize: new window.google.maps.Size(25, 25),
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(12, 12),
-            }}
-            onClick={() => {
-              setDisplay(true);
-              console.log("marker click ");
-            }}
-          />
-        ) : (
-          ""
-        )}
+          {point.time ? (
+            <Marker
+              key={point.time.toISOString()}
+              position={{ lat: point.lat, lng: point.lng }}
+              icon={{
+                url: "./van2.svg",
+                scaledSize: new window.google.maps.Size(25, 25),
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(12, 12),
+              }}
+              onClick={() => {
+                setDisplay(true);
+                console.log("marker click ");
+              }}
+            />
+          ) : (
+            ""
+          )}
 
-        {display ? (
-          <InfoWindow
-            className={styles.infoPop}
-            position={{ lat: view[0].lat, lng: view[0].lng }}
-            onCloseClick={() => setDisplay(false)}
-          >
-            <div>
-              <h2>Vancation Spot!</h2>
-              <p>
-                {view[0].time
-                  ? String(formatRelative(view[0].time, new Date()))
-                  : ""}
-              </p>
-              <button className={styles.detailButton}>Details</button>
-            </div>
-          </InfoWindow>
-        ) : null}
-      </GoogleMap>
+          {display ? (
+            <InfoWindow
+              className={styles.infoPop}
+              position={{ lat: view[0].lat, lng: view[0].lng }}
+              onCloseClick={() => setDisplay(false)}
+            >
+              <div>
+                <h2>Vancation Spot!</h2>
+                <p>
+                  {view[0].time
+                    ? String(formatRelative(view[0].time, new Date()))
+                    : ""}
+                </p>
+                <button className={styles.detailButton}>Details</button>
+              </div>
+            </InfoWindow>
+          ) : null}
+        </GoogleMap>
+      </div>
+      <section className={styles.panelSection}>
+        <Panel
+          lat={point ? point.lat : ""}
+          lng={point ? point.lng : ""}
+          time={point ? point.time : ""}
+          place={point ? point.placeId : ""}
+        />
+      </section>
     </div>
   ) : (
     <></>
