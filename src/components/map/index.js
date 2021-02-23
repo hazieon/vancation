@@ -163,6 +163,7 @@ function MapContainer() {
 
         {display ? (
           <InfoWindow
+            className={styles.infoPop}
             position={{ lat: view[0].lat, lng: view[0].lng }}
             onCloseClick={() => setDisplay(false)}
           >

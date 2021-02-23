@@ -1,15 +1,12 @@
 .App {
   text-align: center;
+  top: 3em;
 }
 
 .heading {
   position: relative;
   font-family: "Moonllime";
   font-size: 3.3rem;
-}
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -32,33 +29,36 @@
 }
 
 .nav {
-  max-height: fit-content;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  border: 2px solid slateblue;
   background-color: rgb(22, 138, 153);
+  overflow: hidden;
 }
 
-.nav span {
-  position: absolute;
-  top: 0;
-  left: 0;
+.active {
+  background-color: rgb(50, 22, 153);
+}
+.nav a {
   cursor: pointer;
-  font-size: 1.5em;
-  margin-left: 0.8em;
-  margin-top: 0.3em;
-}
-
-.nav p {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: underline;
+  font-size: 1.1em;
 }
 
-.nav p:hover {
+.nav a:hover {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.topnav .icon {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+}
+
+/* The "responsive" class is added to the nav with JavaScript when the user clicks on the icon. This class makes the nav look good on small screens (display the links vertically instead of horizontally) */
+@media screen and (max-width: 600px) {
 }

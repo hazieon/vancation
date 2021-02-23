@@ -1,10 +1,10 @@
 .search {
   position: absolute;
   top: 0.5rem;
-  left: 55%;
+  left: 50%;
   transform: translate(-50%);
   width: 80%;
-  max-width: 350px;
+  max-width: 30%;
   z-index: 2;
   /* margin: 0;
   padding: 0; */
