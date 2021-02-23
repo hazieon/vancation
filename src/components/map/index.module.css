@@ -1,12 +1,18 @@
+.container {
+  position: absolute;
+}
 .label {
   position: absolute;
-  top: 5.5rem;
-  left: 0.5rem;
-  color: black;
+  top: 0.07em;
+  left: 0.3rem;
+  color: rgb(36, 35, 35);
+  text-shadow: 0px 1px 3px aliceblue;
   z-index: 2;
   margin: 0;
   padding: 0;
-  font-size: medium;
+  font-size: x-large;
+  font-family: "moonllime";
+  user-select: none;
 }
 
 .detailButton {

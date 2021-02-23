@@ -21,7 +21,8 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
-import Search from "../search";
+import Search from "../search/index";
+import Locate from "../locate";
 
 //<div>
 //Icons from
@@ -86,6 +87,12 @@ function MapContainer() {
     setMap(null);
   }, []);
 
+  const panTo = useCallback(({ lat, lng }) => {
+    mapRef.current.panTo({ lat, lng });
+    mapRef.current.setZoom(14);
+    console.log("panto function map ");
+  }, []);
+
   //useEffect to set the view state asynchronously (as it was one step behind)
   useEffect(() => {
     if (point.lat) {
@@ -106,13 +113,14 @@ function MapContainer() {
   }
 
   return isLoaded ? (
-    <>
+    <div className={styles.container}>
       <h1 className={styles.label}>
         <span role="img" aria-label="van">
           🚐
         </span>
         Vancation
       </h1>
+      <Locate map={map} panTo={panTo} />
       <Search />
       <GoogleMap
         mapContainerStyle={mapStyles}
@@ -120,7 +128,7 @@ function MapContainer() {
         zoom={10}
         onLoad={onLoad}
         onUnmount={onUnmount}
-        // options={options}
+        options={options}
         onClick={(e) => {
           setPoint({
             lat: e.latLng.lat(),
@@ -149,7 +157,7 @@ function MapContainer() {
             }}
           />
         ) : (
-          " "
+          ""
         )}
 
         {display ? (
@@ -169,7 +177,7 @@ function MapContainer() {
           </InfoWindow>
         ) : null}
       </GoogleMap>
-    </>
+    </div>
   ) : (
     <></>
   );
