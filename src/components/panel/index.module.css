@@ -1,0 +1,61 @@
+.addressBox {
+  margin: auto;
+  text-align: center;
+  /* border: 2px solid red; */
+  overflow: hidden;
+  height: 10vh;
+}
+
+.addressBox:hover {
+  overflow: scroll;
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 600px) {
+  .addressBox {
+    margin: auto;
+    text-align: center;
+    max-width: 50vw;
+    max-height: min-content;
+    /* border: 2px solid red; */
+    overflow: hidden;
+  }
+
+  /* .addressBox:hover {
+    overflow: scroll;
+  } */
+
+  .address {
+    max-width: 45vw;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .addressBox {
+    margin: auto;
+    text-align: center;
+    max-width: 25vw;
+    max-height: 25vh;
+    /* border: 2px solid red; */
+    overflow: hidden;
+  }
+
+  .addressBox:hover {
+    overflow: scroll;
+  }
+  .address {
+    max-width: 35vw;
+  }
+}
+
+.addButton {
+  margin: auto;
+  text-align: center;
+  border-radius: 25px;
+  border: 1px solid rgb(90, 144, 190);
+  background-color: aliceblue;
+}
