@@ -17,24 +17,31 @@ function Panel({ lat, lng, time, placeId }) {
     console.log(data);
     if (data.display_name) {
       setAddress(data.display_name);
+    } else {
+      if (!data.display_name) {
+        setAddress("Choose a vancation spot on the map.");
+      }
     }
   }
   return (
     <section>
       <h1>Vancation details:</h1>
       <p>{time ? String(formatRelative(time, new Date())) : ""}</p>
-      <div className={styles.addressBox}>
-        <p className={styles.address}>{address ? address : ""}</p>
-      </div>
 
       <button
-        className={styles.addButton}
+        className={styles.getButton}
         onClick={() => {
           console.log(lat, lng, "saved!");
           reverseGeocode(lat, lng);
         }}
       >
-        Add Vancation➡
+        Get Address ➡
+      </button>
+      <div className={styles.addressBox}>
+        <p className={styles.address}>{address ? address : ""}</p>
+      </div>
+      <button onClick={console.log("hello")} className={styles.addButton}>
+        Next ➡
       </button>
     </section>
   );
