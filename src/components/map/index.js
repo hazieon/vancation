@@ -74,6 +74,8 @@ function MapContainer() {
   const [view, setView] = useState([]);
   const [display, setDisplay] = useState(false);
   const [currentPanel, setCurrentPanel] = useState("panel");
+  const [checkedItems, setCheckedItems] = useState([]);
+  const [address, setAddress] = useState("");
 
   //load script and error script from google maps npm
   const { isLoaded, loadError } = useJsApiLoader({
@@ -121,6 +123,19 @@ function MapContainer() {
   if (loadError) {
     console.log(loadError);
     return "Error loading map";
+  }
+  function handleFeatures(event) {
+    setCheckedItems([
+      ...checkedItems,
+      { [event.target.name]: event.target.checked },
+    ]);
+    console.log(checkedItems);
+    //set to false if checked again
+  }
+
+  function createAddress(string) {
+    setAddress(string);
+    console.log(address);
   }
 
   function changeComponent() {
@@ -223,6 +238,8 @@ function MapContainer() {
         <section className={styles.panelSection}>
           <Panel
             changePage={changeComponent}
+            createAddress={createAddress}
+            address={address}
             lat={point ? point.lat : ""}
             lng={point ? point.lng : ""}
             time={point ? point.time : ""}
@@ -232,7 +249,11 @@ function MapContainer() {
       )}
       {currentPanel === "details" && (
         <section className={styles.detailsSection}>
-          <Details changePage={changeComponent} />
+          <Details
+            changePage={changeComponent}
+            handleFeatures={handleFeatures}
+            checkedItems={checkedItems}
+          />
         </section>
       )}
     </div>

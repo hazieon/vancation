@@ -6,8 +6,15 @@ const MAPTOKEN = process.env.REACT_APP_MAPTOKEN;
 // const MAPURL = process.env.REACT_APP_MAP;
 require("dotenv").config();
 
-function Panel({ changePage, lat, lng, time, placeId }) {
-  const [address, setAddress] = useState("");
+function Panel({
+  changePage,
+  createAddress,
+  address,
+  lat,
+  lng,
+  time,
+  placeId,
+}) {
   console.log(lat, lng, placeId, time, "point in panel");
   async function reverseGeocode() {
     const res = await fetch(
@@ -16,10 +23,10 @@ function Panel({ changePage, lat, lng, time, placeId }) {
     const data = await res.json();
     console.log(data);
     if (data.display_name) {
-      setAddress(data.display_name);
+      createAddress(data.display_name);
     } else {
       if (!data.display_name) {
-        setAddress("Choose a vancation spot on the map.");
+        createAddress("Choose a vancation spot on the map.");
       }
     }
   }

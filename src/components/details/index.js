@@ -2,17 +2,7 @@ import React, { useState } from "react";
 import styles from "./index.module.css";
 import { checkList } from "./checkList";
 
-function Details({ changePage }) {
-  const [checkedItems, setCheckedItems] = useState({});
-
-  function handleChange(event) {
-    setCheckedItems({
-      ...checkedItems,
-      [event.target.name]: event.target.checked,
-    });
-
-    //set to false if checked again
-  }
+function Details({ changePage, handleFeatures, checkedItems }) {
   return (
     <div className={styles.container}>
       <h3>Features:</h3>
@@ -27,7 +17,7 @@ function Details({ changePage }) {
               type="checkbox"
               name={c.item}
               checked={checkedItems[c.item]}
-              onChange={handleChange}
+              onChange={handleFeatures}
             />
           </label>
         );
