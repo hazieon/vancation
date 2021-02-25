@@ -8,6 +8,7 @@
   left: 3em;
   text-align: center;
   max-width: max-content;
+  max-height: 59vh;
   border-radius: 10px;
   box-shadow: 0px 2px 5px 2px rgb(22, 138, 153);
 }
@@ -21,6 +22,15 @@
   height: 50vh;
 }
 
+.detailsSection {
+  right: 3em;
+  position: relative;
+  text-align: center;
+  border-radius: 10px;
+  border: 3px solid blue;
+  height: 60vh;
+}
+
 @media screen and (max-width: 600px) {
   .page {
     display: flex;
@@ -30,9 +40,13 @@
   .container {
     max-width: min-content;
     margin-right: 2%;
-    justify-content: space-be;
   }
   .panelSection {
+    margin: auto;
+    min-width: 60vw;
+  }
+
+  .detailsSection {
     margin: auto;
     min-width: 60vw;
   }

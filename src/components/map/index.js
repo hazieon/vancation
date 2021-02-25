@@ -24,6 +24,7 @@ import "@reach/combobox/styles.css";
 import Search from "../search/index";
 import Locate from "../locate";
 import Panel from "../panel";
+import Details from "../details";
 
 //<div>
 //Icons from
@@ -65,6 +66,7 @@ function MapContainer() {
   const [point, setPoint] = useState([]);
   const [view, setView] = useState([]);
   const [display, setDisplay] = useState(false);
+  const [currentPanel, setCurrentPanel] = useState("panel");
 
   //load script and error script from google maps npm
   const { isLoaded, loadError } = useJsApiLoader({
@@ -114,6 +116,15 @@ function MapContainer() {
     return "Error loading map";
   }
 
+  function changeComponent() {
+    //array with order of pages, move to NEXT index on button click
+    if (currentPanel === "panel") {
+      setCurrentPanel("details");
+    } else if (currentPanel === "details") {
+      setCurrentPanel("panel");
+    }
+  }
+
   return isLoaded ? (
     <div className={styles.page}>
       <div className={styles.container}>
@@ -150,7 +161,7 @@ function MapContainer() {
               position={{ lat: point.lat, lng: point.lng }}
               icon={{
                 url: "./van2.svg",
-                scaledSize: new window.google.maps.Size(25, 25),
+                scaledSize: new window.google.maps.Size(30, 30),
                 origin: new window.google.maps.Point(0, 0),
                 anchor: new window.google.maps.Point(12, 12),
               }}
@@ -182,20 +193,31 @@ function MapContainer() {
           ) : null}
         </GoogleMap>
       </div>
-      <section className={styles.panelSection}>
-        <Panel
-          lat={point ? point.lat : ""}
-          lng={point ? point.lng : ""}
-          time={point ? point.time : ""}
-          place={point ? point.placeId : ""}
-        />
-      </section>
+
+      {currentPanel === "panel" && (
+        <section className={styles.panelSection}>
+          <Panel
+            changePage={changeComponent}
+            lat={point ? point.lat : ""}
+            lng={point ? point.lng : ""}
+            time={point ? point.time : ""}
+            place={point ? point.placeId : ""}
+          />
+        </section>
+      )}
+      {currentPanel === "details" && (
+        <section className={styles.detailsSection}>
+          <Details changePage={changeComponent} />
+        </section>
+      )}
     </div>
   ) : (
     <></>
   );
 }
 export default MapContainer;
+
+// if (current panel state === a){render panel} else render details
 
 //optional other code: save clicked points into array
 //create multiple click markers by mapping this array

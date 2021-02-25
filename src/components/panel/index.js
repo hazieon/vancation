@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { formatRelative } from "date-fns";
 import styles from "./index.module.css";
 const MAPTOKEN = process.env.REACT_APP_MAPTOKEN;
-const MAPKEY = process.env.REACT_APP_MAPKEY;
-const MAPURL = process.env.REACT_APP_MAP;
+// const MAPKEY = process.env.REACT_APP_MAPKEY;
+// const MAPURL = process.env.REACT_APP_MAP;
 require("dotenv").config();
 
-function Panel({ lat, lng, time, placeId }) {
+function Panel({ changePage, lat, lng, time, placeId }) {
   const [address, setAddress] = useState("");
   console.log(lat, lng, placeId, time, "point in panel");
   async function reverseGeocode() {
     const res = await fetch(
-      `https://us1.locationiq.com/v1/reverse.php?key=pk.a686db40be877d942a5c10c49ae67edd&format=json&lat=${lat}&lon=${lng}`
+      `https://us1.locationiq.com/v1/reverse.php?key=${MAPTOKEN}&format=json&lat=${lat}&lon=${lng}`
     );
     const data = await res.json();
     console.log(data);
@@ -40,7 +40,7 @@ function Panel({ lat, lng, time, placeId }) {
       <div className={styles.addressBox}>
         <p className={styles.address}>{address ? address : ""}</p>
       </div>
-      <button onClick={console.log("hello")} className={styles.addButton}>
+      <button onClick={changePage} className={styles.addButton}>
         Next ➡
       </button>
     </section>
