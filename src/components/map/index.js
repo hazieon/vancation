@@ -74,7 +74,7 @@ function MapContainer() {
   const [view, setView] = useState([]);
   const [display, setDisplay] = useState(false);
   const [currentPanel, setCurrentPanel] = useState("panel");
-  const [checkedItems, setCheckedItems] = useState([]);
+  const [checkedItems, setCheckedItems] = useState({});
   const [address, setAddress] = useState("");
 
   //load script and error script from google maps npm
@@ -125,10 +125,10 @@ function MapContainer() {
     return "Error loading map";
   }
   function handleFeatures(event) {
-    setCheckedItems([
+    setCheckedItems({
       ...checkedItems,
-      { [event.target.name]: event.target.checked },
-    ]);
+      [event.target.name]: event.target.checked,
+    });
     console.log(checkedItems);
     //set to false if checked again
   }
