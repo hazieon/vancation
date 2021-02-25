@@ -61,6 +61,12 @@ const options = {
   zoomControl: true,
 };
 
+const presets = [
+  { lat: -1.2884, lng: 36.8233 },
+  { lat: -3.745, lng: -38.523 },
+  { lat: 52.52011994421292, lng: -1.4640778962357217 },
+];
+
 function MapContainer() {
   const [map, setMap] = useState(null);
   const [point, setPoint] = useState([]);
@@ -154,6 +160,24 @@ function MapContainer() {
           }}
         >
           {/* Child components, e.g. markers, info windows: */}
+
+          {presets.map((p, i) => {
+            return (
+              <Marker
+                key={p.lat}
+                position={p}
+                icon={{
+                  url: "./van4.svg",
+                  scaledSize: new window.google.maps.Size(28, 28),
+                  origin: new window.google.maps.Point(0, 0),
+                  anchor: new window.google.maps.Point(12, 12),
+                }}
+                onClick={() => {
+                  console.log(p);
+                }}
+              />
+            );
+          })}
 
           {point.time ? (
             <Marker
