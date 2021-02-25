@@ -192,6 +192,7 @@ function MapContainer() {
                 }}
                 onClick={() => {
                   setDetailDisplay({ lat: p.lat, lng: p.lng, index: i });
+                  setDisplay(false);
                   console.log(p);
                 }}
               />
@@ -211,6 +212,7 @@ function MapContainer() {
               }}
               onClick={() => {
                 setDisplay(true);
+                setDetailDisplay({});
                 console.log("marker click ");
               }}
             />
