@@ -73,6 +73,7 @@ function MapContainer() {
   const [point, setPoint] = useState([]);
   const [view, setView] = useState([]);
   const [display, setDisplay] = useState(false);
+  const [detailDisplay, setDetailDisplay] = useState(false);
   const [currentPanel, setCurrentPanel] = useState("panel");
   const [checkedItems, setCheckedItems] = useState({});
   const [address, setAddress] = useState("");
@@ -178,6 +179,7 @@ function MapContainer() {
           {/* Child components, e.g. markers, info windows: */}
 
           {presets.map((p, i) => {
+            //saved marker points
             return (
               <Marker
                 key={p.lat}
@@ -189,6 +191,7 @@ function MapContainer() {
                   anchor: new window.google.maps.Point(12, 12),
                 }}
                 onClick={() => {
+                  setDetailDisplay({ lat: p.lat, lng: p.lng, index: i });
                   console.log(p);
                 }}
               />
@@ -196,6 +199,7 @@ function MapContainer() {
           })}
 
           {point.time ? (
+            //marker to show on mouse click
             <Marker
               key={point.time.toISOString()}
               position={{ lat: point.lat, lng: point.lng }}
@@ -215,6 +219,7 @@ function MapContainer() {
           )}
 
           {display ? (
+            //info popup on NEW marker click
             <InfoWindow
               className={styles.infoPop}
               position={{ lat: view[0].lat, lng: view[0].lng }}
@@ -231,6 +236,39 @@ function MapContainer() {
               </div>
             </InfoWindow>
           ) : null}
+
+          {detailDisplay.lat
+            ? presets.map((p, i) => {
+                return (
+                  <InfoWindow
+                    className={styles.infoPop}
+                    position={detailDisplay}
+                    onCloseClick={() => setDetailDisplay({})}
+                  >
+                    <div>
+                      <h2>Vancation Spot!</h2>
+                      <p>time</p>
+                      <button className={styles.detailButton}>Details</button>
+                    </div>
+                  </InfoWindow>
+                );
+              })
+            : null}
+
+          {/* {presets ? (
+            //info popup on PRESET marker click
+            <InfoWindow
+              className={styles.infoPop}
+              position={{ lat: presets[0].lat, lng: presets[0].lng }}
+              onCloseClick={() => setDisplay(false)}
+            >
+              <div>
+                <h2>Vancation Spot!</h2>
+                <p>time</p>
+                <button className={styles.detailButton}>Details</button>
+              </div>
+            </InfoWindow>
+          ) : null} */}
         </GoogleMap>
       </div>
 
