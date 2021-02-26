@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styles from "./index.module.css";
 import { checkList } from "./checkList";
-
-function Details({ changePage, handleFeatures, checkedItems }) {
+//CLEAR THE DETAILS LIST AFTER SAVE AND CLICKING A NEW LOCATION!!! AND AFTER REFRESH!
+function Details({ changePage, handleFeatures, checkedItems, clearFeatures }) {
   return (
     <div className={styles.container}>
       <h3>Features:</h3>
@@ -30,6 +30,7 @@ function Details({ changePage, handleFeatures, checkedItems }) {
       <button
         className={styles.saveButton}
         onClick={() => {
+          clearFeatures();
           console.log(checkedItems);
         }}
       >

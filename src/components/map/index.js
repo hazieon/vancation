@@ -134,6 +134,10 @@ function MapContainer() {
     //set to false if checked again
   }
 
+  function clearFeatures() {
+    setCheckedItems({});
+  }
+
   function createAddress(string) {
     setAddress(string);
     console.log(address);
@@ -174,6 +178,7 @@ function MapContainer() {
               placeId: e.placeId,
             });
             console.log(point, "points ");
+            clearFeatures();
           }}
         >
           {/* Child components, e.g. markers, info windows: */}
@@ -293,6 +298,7 @@ function MapContainer() {
             changePage={changeComponent}
             handleFeatures={handleFeatures}
             checkedItems={checkedItems}
+            clearFeatures={clearFeatures}
           />
         </section>
       )}
