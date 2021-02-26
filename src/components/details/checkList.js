@@ -10,7 +10,7 @@ const checkList = [
   { item: "Near petrol stn" },
   { item: "Public bathrooms" },
   { item: "Flat parking" },
-  { item: "Near traffic" },
+  { item: "Away from traffic" },
 ];
 
 // const checkListCons = [
