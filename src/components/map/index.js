@@ -68,7 +68,7 @@ const presets = [
   { lat: 52.0507548306133, lng: -1.7856869475872172 },
 ];
 
-function MapContainer() {
+function MapContainer({presetData}) {
   const [map, setMap] = useState(null);
   const [point, setPoint] = useState([]);
   const [view, setView] = useState([]);
@@ -78,6 +78,7 @@ function MapContainer() {
   const [checkedItems, setCheckedItems] = useState({});
   const [address, setAddress] = useState("");
 
+   console.log(presetData)
   //load script and error script from google maps npm
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
@@ -183,6 +184,29 @@ function MapContainer() {
         >
           {/* Child components, e.g. markers, info windows: */}
 
+
+          {presetData ? presetData.map((p, i) => {
+            //saved marker points
+            return (
+              <Marker
+                key={p.id}
+                position={Object(p.location)}
+                icon={{
+                  url: "./van4.svg",
+                  scaledSize: new window.google.maps.Size(28, 28),
+                  origin: new window.google.maps.Point(0, 0),
+                  anchor: new window.google.maps.Point(12, 12),
+                }}
+                onClick={() => {
+                  setDetailDisplay({ lat: p.location.lat, lng: p.location.lng, index: i });
+                  setDisplay(false);
+                  console.log(p);
+                }}
+              />
+            );
+          }): null} 
+
+{/* 
           {presets.map((p, i) => {
             //saved marker points
             return (
@@ -202,7 +226,7 @@ function MapContainer() {
                 }}
               />
             );
-          })}
+          })} */}
 
           {point.time ? (
             //marker to show on mouse click
