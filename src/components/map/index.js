@@ -25,7 +25,7 @@ import Search from "../search/index";
 import Locate from "../locate";
 import Panel from "../panel";
 import Details from "../details";
-
+const relativeDate = require('tiny-relative-date')
 //<div>
 //Icons from
 //<a href="https://www.flaticon.com/" title="xnimrodx">
@@ -78,7 +78,7 @@ function MapContainer({presetData}) {
   const [checkedItems, setCheckedItems] = useState({});
   const [address, setAddress] = useState("");
 
-   console.log(presetData)
+   console.log(presetData[1].date)
   //load script and error script from google maps npm
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
@@ -185,12 +185,12 @@ function MapContainer({presetData}) {
           {/* Child components, e.g. markers, info windows: */}
 
 
-          {presetData ? presetData.map((p, i) => {
+          {presetData[1] ? presetData.map((p, i) => {
             //saved marker points
             return (
               <Marker
                 key={p.id}
-                position={Object(p.location)}
+                position={{lat:parseFloat(p.lat),lng:parseFloat(p.lng)}}
                 icon={{
                   url: "./van4.svg",
                   scaledSize: new window.google.maps.Size(28, 28),
@@ -198,7 +198,7 @@ function MapContainer({presetData}) {
                   anchor: new window.google.maps.Point(12, 12),
                 }}
                 onClick={() => {
-                  setDetailDisplay({ lat: p.location.lat, lng: p.location.lng, index: i });
+                  setDetailDisplay({ lat:parseFloat(p.lat),lng:parseFloat(p.lng), index: i, time: p.date, details: p.details });
                   setDisplay(false);
                   console.log(p);
                 }}
@@ -269,7 +269,7 @@ function MapContainer({presetData}) {
           ) : null}
 
           {detailDisplay.lat
-            ? presets.map((p, i) => {
+            ? presetData.map((p, i) => {
                 return (
                   <InfoWindow
                     className={styles.infoPop}
@@ -278,7 +278,6 @@ function MapContainer({presetData}) {
                   >
                     <div>
                       <h2>Vancation Spot!</h2>
-                      <p>time</p>
                       <button className={styles.detailButton}>Details</button>
                     </div>
                   </InfoWindow>
@@ -286,20 +285,7 @@ function MapContainer({presetData}) {
               })
             : null}
 
-          {/* {presets ? (
-            //info popup on PRESET marker click
-            <InfoWindow
-              className={styles.infoPop}
-              position={{ lat: presets[0].lat, lng: presets[0].lng }}
-              onCloseClick={() => setDisplay(false)}
-            >
-              <div>
-                <h2>Vancation Spot!</h2>
-                <p>time</p>
-                <button className={styles.detailButton}>Details</button>
-              </div>
-            </InfoWindow>
-          ) : null} */}
+         
         </GoogleMap>
       </div>
 
