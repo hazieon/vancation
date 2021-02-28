@@ -25,35 +25,34 @@ function App() {
     // if (fetchPresets.length) fetchPresets(); //to rerun if the data changes
   }, []);
 
-  const testPost = {
-    uuid: 1,
-    lat: "48.498874570066654",
-    lng: "8.342145689365225",
-    address:
-      "Fegfeuer, Baiersbronn, Landkre Freudenstadt, Baden-Württemberg, 72270, Germany",
-    date: "Sun Feb 28 2021 19:58:45",
-    details: {
-      "Away from traffic": true,
-      "Dog friendly": true,
-      "Electricity supply": true,
-      FREE: true,
-      "Flat parking": true,
-      "Green space": true,
-      "Public bathrooms": true,
-      "Safe/Secure": true,
-    },
-  };
-  async function postNewMarker() {
+  // const testPost = {
+  //   lat: "48.498874570066654",
+  //   lng: "8.342145689365225",
+  //   address:
+  //     "Fegfeuer, Baiersbronn, Landkre Freudenstadt, Baden-Württemberg, 72270, Germany",
+  //   date: "Sun Feb 28 2021 19:58:45",
+  //   details: {
+  //     "Away from traffic": true,
+  //     "Dog friendly": true,
+  //     "Electricity supply": true,
+  //     FREE: true,
+  //     "Flat parking": true,
+  //     "Green space": true,
+  //     "Public bathrooms": true,
+  //     "Safe/Secure": true,
+  //   },
+  // };
+  async function postNewMarker(newPost) {
     console.log("posting new vancation");
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(testPost),
+      body: JSON.stringify(newPost),
     });
   }
-  useEffect(() => {
-    postNewMarker();
-  }, []);
+  // useEffect(() => {
+  //   postNewMarker();
+  // }, []);
   //   async function fetchPresets() {
   //     const response = await fetch(url, {
   //       method: "GET",
