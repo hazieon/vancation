@@ -25,7 +25,7 @@ import Search from "../search/index";
 import Locate from "../locate";
 import Panel from "../panel";
 import Details from "../details";
-const relativeDate = require('tiny-relative-date')
+
 //<div>
 //Icons from
 //<a href="https://www.flaticon.com/" title="xnimrodx">
@@ -74,11 +74,10 @@ function MapContainer({presetData}) {
   const [view, setView] = useState([]);
   const [display, setDisplay] = useState(false);
   const [detailDisplay, setDetailDisplay] = useState(false);
-  const [currentPanel, setCurrentPanel] = useState("panel");
+  const [currentPanel, setCurrentPanel] = useState(0);
   const [checkedItems, setCheckedItems] = useState({});
   const [address, setAddress] = useState("");
 
-   console.log(presetData[1].date)
   //load script and error script from google maps npm
   const { isLoaded, loadError } = useJsApiLoader({
     id: "google-map-script",
@@ -110,6 +109,7 @@ function MapContainer({presetData}) {
 
   //useEffect to set the view state asynchronously (as it was one step behind)
   useEffect(() => {
+    setCurrentPanel(0);
     if (point.lat) {
       let viewArr = [];
       viewArr.push(point);
@@ -143,13 +143,23 @@ function MapContainer({presetData}) {
     setAddress(string);
     console.log(address);
   }
-
-  function changeComponent() {
+  const componentPages = [0,1,2];
+  function incComponent() {
     //array with order of pages, move to NEXT index on button click
-    if (currentPanel === "panel") {
-      setCurrentPanel("details");
-    } else if (currentPanel === "details") {
-      setCurrentPanel("panel");
+       if(currentPanel<componentPages.length){
+    setCurrentPanel(currentPanel+1)}else{
+      return currentPanel;
+    }
+    // if (currentPanel === 0) {
+    //   setCurrentPanel(componentPages[1]);
+    // } else if (currentPanel === "details") {
+    //   setCurrentPanel("panel");
+    // }
+  }
+  function decComponent(){
+    if(currentPanel>0){
+    setCurrentPanel(currentPanel-1)}else{
+      return currentPanel;
     }
   }
 
@@ -186,7 +196,7 @@ function MapContainer({presetData}) {
 
 
           {presetData[1] ? presetData.map((p, i) => {
-            //saved marker points
+           //display preset markers at preset points
             return (
               <Marker
                 key={p.id}
@@ -206,30 +216,9 @@ function MapContainer({presetData}) {
             );
           }): null} 
 
-{/* 
-          {presets.map((p, i) => {
-            //saved marker points
-            return (
-              <Marker
-                key={p.lat}
-                position={p}
-                icon={{
-                  url: "./van4.svg",
-                  scaledSize: new window.google.maps.Size(28, 28),
-                  origin: new window.google.maps.Point(0, 0),
-                  anchor: new window.google.maps.Point(12, 12),
-                }}
-                onClick={() => {
-                  setDetailDisplay({ lat: p.lat, lng: p.lng, index: i });
-                  setDisplay(false);
-                  console.log(p);
-                }}
-              />
-            );
-          })} */}
 
           {point.time ? (
-            //marker to show on mouse click
+            //NEW marker to show on mouse click
             <Marker
               key={point.time.toISOString()}
               position={{ lat: point.lat, lng: point.lng }}
@@ -250,7 +239,7 @@ function MapContainer({presetData}) {
           )}
 
           {display ? (
-            //info popup on NEW marker click
+            //info popup for NEW marker click
             <InfoWindow
               className={styles.infoPop}
               position={{ lat: view[0].lat, lng: view[0].lng }}
@@ -270,6 +259,7 @@ function MapContainer({presetData}) {
 
           {detailDisplay.lat
             ? presetData.map((p, i) => {
+              //display popup for preset markers
                 return (
                   <InfoWindow
                     className={styles.infoPop}
@@ -289,10 +279,11 @@ function MapContainer({presetData}) {
         </GoogleMap>
       </div>
 
-      {currentPanel === "panel" && (
+      {currentPanel === 0 && (
         <section className={styles.panelSection}>
           <Panel
-            changePage={changeComponent}
+            incComponent={incComponent}
+            decComponent={decComponent}
             createAddress={createAddress}
             address={address}
             lat={point ? point.lat : ""}
@@ -302,10 +293,11 @@ function MapContainer({presetData}) {
           />
         </section>
       )}
-      {currentPanel === "details" && (
+      {currentPanel === 1 && (
         <section className={styles.detailsSection}>
           <Details
-            changePage={changeComponent}
+            incComponent={incComponent}
+            decComponent={decComponent}
             handleFeatures={handleFeatures}
             checkedItems={checkedItems}
             clearFeatures={clearFeatures}

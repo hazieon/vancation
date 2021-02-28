@@ -7,7 +7,8 @@ const MAPTOKEN = process.env.REACT_APP_MAPTOKEN;
 require("dotenv").config();
 
 function Panel({
-  changePage,
+  incComponent,
+  decComponent,
   createAddress,
   address,
   lat,
@@ -47,7 +48,7 @@ function Panel({
       <div className={styles.addressBox}>
         <p className={styles.address}>{address ? address : ""}</p>
       </div>
-      <button onClick={changePage} className={styles.addButton}>
+      <button onClick={incComponent} className={styles.addButton}>
         Next ➡
       </button>
     </section>

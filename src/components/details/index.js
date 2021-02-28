@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./index.module.css";
 import { checkList } from "./checkList";
 //CLEAR THE DETAILS LIST AFTER SAVE AND CLICKING A NEW LOCATION!!! AND AFTER REFRESH!
-function Details({ changePage, handleFeatures, checkedItems, clearFeatures }) {
+function Details({ incComponent, decComponent, handleFeatures, checkedItems, clearFeatures }) {
   return (
     <div className={styles.container}>
       <h3>Features:</h3>
@@ -23,7 +23,7 @@ function Details({ changePage, handleFeatures, checkedItems, clearFeatures }) {
         );
       })}
 
-      <button className={styles.backButton} onClick={changePage}>
+      <button className={styles.backButton} onClick={decComponent}>
         ← back
       </button>
 
@@ -31,6 +31,7 @@ function Details({ changePage, handleFeatures, checkedItems, clearFeatures }) {
         className={styles.saveButton}
         onClick={() => {
           clearFeatures();
+          // incComponent();
           console.log(checkedItems);
         }}
       >

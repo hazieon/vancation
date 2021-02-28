@@ -4,7 +4,7 @@
   /* border: 2px solid red; */
   overflow-x: hidden;
   overflow-y: scroll;
-  height: 10vh;
+  height: 25vh;
 }
 
 .addressBox:hover {
