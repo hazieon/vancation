@@ -50,6 +50,14 @@ function App() {
       body: JSON.stringify(newPost),
     });
   }
+
+  async function removeMarker(id) {
+    console.log(`removing item ${id}`);
+    console.log(`${url}${id}`);
+    const res = await fetch(`${url}${id}`, {
+      method: "DELETE",
+    });
+  }
   // useEffect(() => {
   //   postNewMarker();
   // }, []);
@@ -91,7 +99,11 @@ function App() {
       <div className="App">
         <h1 className="heading">Vancation</h1>
       </div>
-      <MapContainer presetData={presetData} postNewMarker={postNewMarker} />
+      <MapContainer
+        presetData={presetData}
+        postNewMarker={postNewMarker}
+        removeMarker={removeMarker}
+      />
     </div>
   );
 }

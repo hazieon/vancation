@@ -69,7 +69,7 @@ const presets = [
   { lat: 52.0507548306133, lng: -1.7856869475872172 },
 ];
 
-function MapContainer({ presetData, postNewMarker }) {
+function MapContainer({ presetData, postNewMarker, removeMarker }) {
   const [map, setMap] = useState(null);
   const [point, setPoint] = useState([]);
   const [view, setView] = useState([]);
@@ -78,6 +78,7 @@ function MapContainer({ presetData, postNewMarker }) {
   const [currentPanel, setCurrentPanel] = useState(0);
   const [checkedItems, setCheckedItems] = useState({});
   const [address, setAddress] = useState("");
+  const [selectedId, setSelectedId] = useState(null);
   // const [newData, setNewData] = useState({});
 
   //load script and error script from google maps npm
@@ -225,9 +226,38 @@ function MapContainer({ presetData, postNewMarker }) {
                         details: p.details,
                       });
                       setDisplay(false);
+                      setSelectedId(p.id);
                       console.log(p);
                     }}
                   />
+                );
+              })
+            : null}
+
+          {detailDisplay.lat
+            ? presetData.map((p, i) => {
+                //display popup for preset markers
+                return (
+                  <InfoWindow
+                    key={p.id}
+                    className={styles.infoPop}
+                    position={detailDisplay}
+                    onCloseClick={() => setDetailDisplay({})}
+                  >
+                    <div>
+                      <h2>Vancation Spot!</h2>
+
+                      <button
+                        onClick={() => setCurrentPanel(2)}
+                        className={styles.detailButton}
+                      >
+                        Details
+                      </button>
+                      <button onClick={() => removeMarker(selectedId)}>
+                        x
+                      </button>
+                    </div>
+                  </InfoWindow>
                 );
               })
             : null}
@@ -276,26 +306,6 @@ function MapContainer({ presetData, postNewMarker }) {
               </div>
             </InfoWindow>
           ) : null}
-
-          {detailDisplay.lat
-            ? presetData.map((p, i) => {
-                //display popup for preset markers
-                return (
-                  <InfoWindow
-                    key={p.id}
-                    className={styles.infoPop}
-                    position={detailDisplay}
-                    onCloseClick={() => setDetailDisplay({})}
-                    //onClick set display to 2 with db data?
-                  >
-                    <div>
-                      <h2>Vancation Spot!</h2>
-                      <button className={styles.detailButton}>Details</button>
-                    </div>
-                  </InfoWindow>
-                );
-              })
-            : null}
         </GoogleMap>
       </div>
 
