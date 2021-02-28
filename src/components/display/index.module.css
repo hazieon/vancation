@@ -1,0 +1,55 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+  
+  .detailButton {
+    position: absolute;
+    margin: auto;
+    text-align: center;
+    border-radius: 25px;
+    border: 1px solid rgb(90, 144, 190);
+    background-color: aliceblue;
+  }
+  /* 
+  .container * {
+    display: block;
+  } */
+  /* .backButton {
+    margin: auto;
+    text-align: center;
+    border: 1px solid rgb(90, 144, 190);
+    background-color: aliceblue;
+    border-radius: 25px;
+  } */
+  
+  .backButton {
+    position: absolute;
+    top: 0.07em;
+    left: 0.4rem;
+    border: 1px solid rgb(90, 144, 190);
+    background-color: aliceblue;
+    border-radius: 25px;
+  }
+  
+  .saveButton {
+    position: relative;
+    margin: auto;
+    text-align: center;
+    border: 1px solid rgb(90, 144, 190);
+    background-color: aliceblue;
+    border-radius: 10px;
+    padding: 0.5em;
+    margin-left: -50px;
+    margin-top: 20px;
+    left: 50%;
+    width: 100px;
+    bottom: 0px;
+  }
+  
+  .sub {
+    margin: auto;
+    max-width: 35vw;
+  }
+  

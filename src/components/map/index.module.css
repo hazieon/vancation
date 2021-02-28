@@ -31,6 +31,16 @@
   height: 60vh;
 }
 
+.displaySection {
+  right: 3em;
+  position: relative;
+  text-align: center;
+  border-radius: 10px;
+  border: 3px solid rgb(87, 47, 180);
+  height: 60vh;
+}
+
+
 @media screen and (max-width: 600px) {
   .page {
     display: flex;

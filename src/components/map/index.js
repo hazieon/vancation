@@ -25,6 +25,7 @@ import Search from "../search/index";
 import Locate from "../locate";
 import Panel from "../panel";
 import Details from "../details";
+import Display from "../display";
 
 //<div>
 //Icons from
@@ -299,6 +300,21 @@ function MapContainer({presetData}) {
           />
         </section>
       )}
+      
+      {currentPanel === 2 && (
+        <section className={styles.displaySection}>
+          <Display
+            incComponent={incComponent}
+            decComponent={decComponent}
+            handleFeatures={handleFeatures}
+            checkedItems={checkedItems}
+            clearFeatures={clearFeatures}
+            address={address}
+          />
+        </section>)}
+
+
+
     </div>
   ) : (
     <></>

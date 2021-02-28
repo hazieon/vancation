@@ -23,19 +23,19 @@ function Details({ incComponent, decComponent, handleFeatures, checkedItems, cle
         );
       })}
 
-      <button className={styles.backButton} onClick={decComponent}>
-        ← back
+      <button className={styles.backButton} onClick={decComponent}>← back
       </button>
 
       <button
         className={styles.saveButton}
         onClick={() => {
-          clearFeatures();
+         
+          incComponent();
           // incComponent();
           console.log(checkedItems);
         }}
       >
-        Save
+        Next ➡
       </button>
     </div>
   );
