@@ -42,6 +42,7 @@ function Details({
       <button
         className={styles.saveButton}
         onClick={() => {
+          console.log(checkedItems);
           // updateData({
           //   lat: lat,
           //   lng: lng,
@@ -49,18 +50,25 @@ function Details({
           //   date: time,
           //   details: checkedItems,
           // });
-          alert("save this Vancation spot?");
-          postNewMarker({
-            lat: lat,
-            lng: lng,
-            address: address,
-            date: time,
-            details: checkedItems,
-          });
-          console.log("new marker posted!");
-          incComponent();
+
+          if (address && checkedItems.length > 0) {
+            //REFACTOR to use npm package for confirm - toast?
+            alert("saving Vancation spot");
+            postNewMarker({
+              lat: lat,
+              lng: lng,
+              address: address,
+              date: time,
+              details: checkedItems,
+            });
+            console.log("new marker posted!");
+            incComponent();
+          } else {
+            alert("Error: Set an address & details first!");
+            console.log("set an address first");
+          }
+
           // incComponent();
-          console.log(checkedItems);
         }}
       >
         Save ➡
