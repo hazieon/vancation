@@ -11,6 +11,7 @@ function Display({
   address,
   presetData,
   updateData,
+  selectedId,
 }) {
   //REFACTOR TO USE DB DATA INSTEAD
   console.log(presetData);
@@ -31,24 +32,24 @@ function Display({
 
 export default Display;
 
-{
-  /* <div className={styles.addressBox}>
-<p className={styles.address}>{address}</p>
-</div>
+// {
+//   /* <div className={styles.addressBox}>
+// <p className={styles.address}>{address}</p>
+// </div>
 
-{checkList.map((c, i) => {
-return (
-  <div className={styles.details}>
-    <span key={c.item}>
-      {c.item}
-    //  { <input
-    //  type="checkbox"
-    //  name={c.item}
-     // checked={checkedItems[c.item]}
-    // /> }
-      <p>{checkedItems[c.item] ? "✅" : "✖"} </p>
-    </span>
-  </div>
-);
-})} */
-}
+// {checkList.map((c, i) => {
+// return (
+//   <div className={styles.details}>
+//     <span key={c.item}>
+//       {c.item}
+//     //  { <input
+//     //  type="checkbox"
+//     //  name={c.item}
+//      // checked={checkedItems[c.item]}
+//     // /> }
+//       <p>{checkedItems[c.item] ? "✅" : "✖"} </p>
+//     </span>
+//   </div>
+// );
+// })} */
+// }

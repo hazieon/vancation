@@ -50,23 +50,28 @@ function Details({
           //   date: time,
           //   details: checkedItems,
           // });
-
-          if (address && checkedItems.length > 0) {
+          console.log(address.length, checkedItems);
+          if (
+            address !== ("Choose a vancation spot on the map." || "") &&
+            Object.keys(checkedItems).length > 0
+          ) {
             //REFACTOR to use npm package for confirm - toast?
-            alert("saving Vancation spot");
-            postNewMarker({
-              lat: lat,
-              lng: lng,
-              address: address,
-              date: time,
-              details: checkedItems,
-            });
-            console.log("new marker posted!");
-            incComponent();
+            if (window.confirm("Save this Vancation spot?")) {
+              postNewMarker({
+                lat: lat,
+                lng: lng,
+                address: address,
+                date: time,
+                details: checkedItems,
+              });
+              console.log("new marker posted!");
+              incComponent();
+            }
           } else {
             alert("Error: Set an address & details first!");
             console.log("set an address first");
           }
+          return;
 
           // incComponent();
         }}

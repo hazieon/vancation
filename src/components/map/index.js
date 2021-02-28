@@ -352,6 +352,7 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
             clearFeatures={clearFeatures}
             address={address}
             presetData={presetData}
+            selectedId={selectedId}
             // updateData={updateData}
           />
         </section>
