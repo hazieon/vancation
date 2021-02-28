@@ -69,7 +69,7 @@ const presets = [
   { lat: 52.0507548306133, lng: -1.7856869475872172 },
 ];
 
-function MapContainer({ presetData }) {
+function MapContainer({ presetData, postNewMarker }) {
   const [map, setMap] = useState(null);
   const [point, setPoint] = useState([]);
   const [view, setView] = useState([]);
@@ -78,6 +78,7 @@ function MapContainer({ presetData }) {
   const [currentPanel, setCurrentPanel] = useState(0);
   const [checkedItems, setCheckedItems] = useState({});
   const [address, setAddress] = useState("");
+  const [newData, setNewData] = useState({});
 
   //load script and error script from google maps npm
   const { isLoaded, loadError } = useJsApiLoader({
@@ -144,6 +145,13 @@ function MapContainer({ presetData }) {
     setAddress(string);
     console.log(address);
   }
+
+  function updateData(object) {
+    setNewData(object);
+    // postNewMarker(newData);
+    console.log("new data updated");
+    console.log(newData);
+  }
   const componentPages = [0, 1, 2];
   function incComponent() {
     //array with order of pages, move to NEXT index on button click
@@ -197,7 +205,7 @@ function MapContainer({ presetData }) {
                 //display preset markers at preset points
                 return (
                   <Marker
-                    key={p.lat}
+                    key={p.id}
                     position={{
                       lat: parseFloat(p.lat),
                       lng: parseFloat(p.lng),
@@ -274,6 +282,7 @@ function MapContainer({ presetData }) {
                 //display popup for preset markers
                 return (
                   <InfoWindow
+                    key={p.id}
                     className={styles.infoPop}
                     position={detailDisplay}
                     onCloseClick={() => setDetailDisplay({})}
@@ -296,11 +305,11 @@ function MapContainer({ presetData }) {
             incComponent={incComponent}
             decComponent={decComponent}
             createAddress={createAddress}
+            updateData={updateData}
             address={address}
+            time={point ? point.time : ""}
             lat={point ? point.lat : ""}
             lng={point ? point.lng : ""}
-            time={point ? point.time : ""}
-            place={point ? point.placeId : ""}
           />
         </section>
       )}
@@ -312,6 +321,12 @@ function MapContainer({ presetData }) {
             handleFeatures={handleFeatures}
             checkedItems={checkedItems}
             clearFeatures={clearFeatures}
+            updateData={updateData}
+            address={address}
+            lat={point ? point.lat : ""}
+            lng={point ? point.lng : ""}
+            time={point ? point.time : ""}
+            place={point ? point.placeId : ""}
           />
         </section>
       )}
@@ -325,6 +340,8 @@ function MapContainer({ presetData }) {
             checkedItems={checkedItems}
             clearFeatures={clearFeatures}
             address={address}
+            presetData={presetData}
+            updateData={updateData}
           />
         </section>
       )}

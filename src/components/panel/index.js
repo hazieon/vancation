@@ -10,6 +10,7 @@ function Panel({
   incComponent,
   decComponent,
   createAddress,
+  updateData,
   address,
   lat,
   lng,
