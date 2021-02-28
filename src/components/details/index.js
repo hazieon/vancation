@@ -9,6 +9,7 @@ function Details({
   checkedItems,
   clearFeatures,
   updateData,
+  postNewMarker,
   address,
   lat,
   lng,
@@ -41,14 +42,22 @@ function Details({
       <button
         className={styles.saveButton}
         onClick={() => {
-          updateData({
+          // updateData({
+          //   lat: lat,
+          //   lng: lng,
+          //   address: address,
+          //   date: time,
+          //   details: checkedItems,
+          // });
+          alert("save this Vancation spot?");
+          postNewMarker({
             lat: lat,
             lng: lng,
             address: address,
             date: time,
             details: checkedItems,
           });
-
+          console.log("new marker posted!");
           incComponent();
           // incComponent();
           console.log(checkedItems);

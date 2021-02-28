@@ -78,7 +78,7 @@ function MapContainer({ presetData, postNewMarker }) {
   const [currentPanel, setCurrentPanel] = useState(0);
   const [checkedItems, setCheckedItems] = useState({});
   const [address, setAddress] = useState("");
-  const [newData, setNewData] = useState({});
+  // const [newData, setNewData] = useState({});
 
   //load script and error script from google maps npm
   const { isLoaded, loadError } = useJsApiLoader({
@@ -146,12 +146,12 @@ function MapContainer({ presetData, postNewMarker }) {
     console.log(address);
   }
 
-  function updateData(object) {
-    setNewData(object);
-    // postNewMarker(newData);
-    console.log("new data updated");
-    console.log(newData);
-  }
+  // function updateData(object) {
+  //   setNewData(object);
+  //   // postNewMarker(newData);
+  //   console.log("new data updated");
+  //   console.log(newData);
+  // }
   const componentPages = [0, 1, 2];
   function incComponent() {
     //array with order of pages, move to NEXT index on button click
@@ -305,7 +305,7 @@ function MapContainer({ presetData, postNewMarker }) {
             incComponent={incComponent}
             decComponent={decComponent}
             createAddress={createAddress}
-            updateData={updateData}
+            // updateData={updateData}
             address={address}
             time={point ? point.time : ""}
             lat={point ? point.lat : ""}
@@ -321,7 +321,8 @@ function MapContainer({ presetData, postNewMarker }) {
             handleFeatures={handleFeatures}
             checkedItems={checkedItems}
             clearFeatures={clearFeatures}
-            updateData={updateData}
+            // updateData={updateData}
+            postNewMarker={postNewMarker}
             address={address}
             lat={point ? point.lat : ""}
             lng={point ? point.lng : ""}
@@ -341,7 +342,7 @@ function MapContainer({ presetData, postNewMarker }) {
             clearFeatures={clearFeatures}
             address={address}
             presetData={presetData}
-            updateData={updateData}
+            // updateData={updateData}
           />
         </section>
       )}
