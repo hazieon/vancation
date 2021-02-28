@@ -8,8 +8,10 @@ const url = "https://vancation.herokuapp.com/";
 function App() {
   const [presetData, setPresetData]=useState([])
   //preset map markers - fetch and pass to map
-  //fetch location details, address on marker click - fetch in map
-  //post new location details on 'save' click - fetch in map?
+  //GET and display details info of db markers - show in a NEW component - display
+    //show display panel on click of preset marker
+  //POST new location + details on 'save' click - function in map, pass to details to call
+  //DELETE functionality - delete button on display window or info popup of preset markers
 
   async function fetchPresets(){
     let res = await fetch(url);

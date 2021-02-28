@@ -150,11 +150,6 @@ function MapContainer({presetData}) {
     setCurrentPanel(currentPanel+1)}else{
       return currentPanel;
     }
-    // if (currentPanel === 0) {
-    //   setCurrentPanel(componentPages[1]);
-    // } else if (currentPanel === "details") {
-    //   setCurrentPanel("panel");
-    // }
   }
   function decComponent(){
     if(currentPanel>0){
