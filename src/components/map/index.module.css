@@ -19,7 +19,7 @@
   text-align: center;
   border-radius: 10px;
   border: 3px solid green;
-  height: 50vh;
+  height: fit-content;
 }
 
 .detailsSection {
@@ -28,7 +28,7 @@
   text-align: center;
   border-radius: 10px;
   border: 3px solid blue;
-  height: 60vh;
+  height: max-content + 10px;
 }
 
 .displaySection {
@@ -37,9 +37,8 @@
   text-align: center;
   border-radius: 10px;
   border: 3px solid rgb(87, 47, 180);
-  height: 60vh;
+  height: fit-content;
 }
-
 
 @media screen and (max-width: 600px) {
   .page {

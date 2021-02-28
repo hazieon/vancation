@@ -69,7 +69,7 @@ const presets = [
   { lat: 52.0507548306133, lng: -1.7856869475872172 },
 ];
 
-function MapContainer({presetData}) {
+function MapContainer({ presetData }) {
   const [map, setMap] = useState(null);
   const [point, setPoint] = useState([]);
   const [view, setView] = useState([]);
@@ -144,17 +144,19 @@ function MapContainer({presetData}) {
     setAddress(string);
     console.log(address);
   }
-  const componentPages = [0,1,2];
+  const componentPages = [0, 1, 2];
   function incComponent() {
     //array with order of pages, move to NEXT index on button click
-       if(currentPanel<componentPages.length){
-    setCurrentPanel(currentPanel+1)}else{
+    if (currentPanel < componentPages.length) {
+      setCurrentPanel(currentPanel + 1);
+    } else {
       return currentPanel;
     }
   }
-  function decComponent(){
-    if(currentPanel>0){
-    setCurrentPanel(currentPanel-1)}else{
+  function decComponent() {
+    if (currentPanel > 0) {
+      setCurrentPanel(currentPanel - 1);
+    } else {
       return currentPanel;
     }
   }
@@ -190,28 +192,37 @@ function MapContainer({presetData}) {
         >
           {/* Child components, e.g. markers, info windows: */}
 
-
-          {presetData[1] ? presetData.map((p, i) => {
-           //display preset markers at preset points
-            return (
-              <Marker
-                key={p.id}
-                position={{lat:parseFloat(p.lat),lng:parseFloat(p.lng)}}
-                icon={{
-                  url: "./van4.svg",
-                  scaledSize: new window.google.maps.Size(28, 28),
-                  origin: new window.google.maps.Point(0, 0),
-                  anchor: new window.google.maps.Point(12, 12),
-                }}
-                onClick={() => {
-                  setDetailDisplay({ lat:parseFloat(p.lat),lng:parseFloat(p.lng), index: i, time: p.date, details: p.details });
-                  setDisplay(false);
-                  console.log(p);
-                }}
-              />
-            );
-          }): null} 
-
+          {presetData[1]
+            ? presetData.map((p, i) => {
+                //display preset markers at preset points
+                return (
+                  <Marker
+                    key={p.lat}
+                    position={{
+                      lat: parseFloat(p.lat),
+                      lng: parseFloat(p.lng),
+                    }}
+                    icon={{
+                      url: "./van4.svg",
+                      scaledSize: new window.google.maps.Size(28, 28),
+                      origin: new window.google.maps.Point(0, 0),
+                      anchor: new window.google.maps.Point(12, 12),
+                    }}
+                    onClick={() => {
+                      setDetailDisplay({
+                        lat: parseFloat(p.lat),
+                        lng: parseFloat(p.lng),
+                        index: i,
+                        time: p.date,
+                        details: p.details,
+                      });
+                      setDisplay(false);
+                      console.log(p);
+                    }}
+                  />
+                );
+              })
+            : null}
 
           {point.time ? (
             //NEW marker to show on mouse click
@@ -242,25 +253,31 @@ function MapContainer({presetData}) {
               onCloseClick={() => setDisplay(false)}
             >
               <div>
-                <h2>Vancation Spot!</h2>
+                <h2>New Vancation Spot!</h2>
                 <p>
                   {view[0].time
                     ? String(formatRelative(view[0].time, new Date()))
                     : ""}
                 </p>
-                <button className={styles.detailButton}>Details</button>
+                <button
+                  className={styles.detailButton}
+                  onClick={() => setCurrentPanel(0)}
+                >
+                  Add Spot
+                </button>
               </div>
             </InfoWindow>
           ) : null}
 
           {detailDisplay.lat
             ? presetData.map((p, i) => {
-              //display popup for preset markers
+                //display popup for preset markers
                 return (
                   <InfoWindow
                     className={styles.infoPop}
                     position={detailDisplay}
                     onCloseClick={() => setDetailDisplay({})}
+                    //onClick set display to 2 with db data?
                   >
                     <div>
                       <h2>Vancation Spot!</h2>
@@ -270,8 +287,6 @@ function MapContainer({presetData}) {
                 );
               })
             : null}
-
-         
         </GoogleMap>
       </div>
 
@@ -300,7 +315,7 @@ function MapContainer({presetData}) {
           />
         </section>
       )}
-      
+
       {currentPanel === 2 && (
         <section className={styles.displaySection}>
           <Display
@@ -311,10 +326,8 @@ function MapContainer({presetData}) {
             clearFeatures={clearFeatures}
             address={address}
           />
-        </section>)}
-
-
-
+        </section>
+      )}
     </div>
   ) : (
     <></>

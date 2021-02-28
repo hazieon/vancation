@@ -1,55 +1,109 @@
 .container {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-  }
-  
-  .detailButton {
-    position: absolute;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.detailButton {
+  position: absolute;
+  margin: auto;
+  text-align: center;
+  border-radius: 25px;
+  border: 1px solid rgb(90, 144, 190);
+  background-color: aliceblue;
+}
+
+.details * {
+  display: inline;
+  margin: 1em;
+}
+/* .backButton {
     margin: auto;
     text-align: center;
-    border-radius: 25px;
     border: 1px solid rgb(90, 144, 190);
     background-color: aliceblue;
-  }
-  /* 
-  .container * {
-    display: block;
+    border-radius: 25px;
   } */
-  /* .backButton {
+
+.backButton {
+  position: absolute;
+  top: 0.07em;
+  left: 0.4rem;
+  border: 1px solid rgb(90, 144, 190);
+  background-color: aliceblue;
+  border-radius: 25px;
+}
+
+.saveButton {
+  position: relative;
+  margin: auto;
+  text-align: center;
+  border: 1px solid rgb(90, 144, 190);
+  background-color: aliceblue;
+  border-radius: 10px;
+  padding: 0.5em;
+  margin-left: -50px;
+  margin-top: 20px;
+  left: 50%;
+  width: 100px;
+  bottom: 0px;
+}
+
+.sub {
+  margin: auto;
+  max-width: 35vw;
+}
+
+.addressBox {
+  margin: auto;
+  text-align: center;
+  /* border: 2px solid red; */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 25vh;
+}
+
+.addressBox:hover {
+  overflow: scroll;
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 600px) {
+  .addressBox {
     margin: auto;
     text-align: center;
-    border: 1px solid rgb(90, 144, 190);
-    background-color: aliceblue;
-    border-radius: 25px;
-  } */
-  
-  .backButton {
-    position: absolute;
-    top: 0.07em;
-    left: 0.4rem;
-    border: 1px solid rgb(90, 144, 190);
-    background-color: aliceblue;
-    border-radius: 25px;
+    max-width: 50vw;
+    max-height: min-content;
+    /* border: 2px solid red; */
+    overflow: hidden;
   }
-  
-  .saveButton {
-    position: relative;
+
+  /* .addressBox:hover {
+      overflow: scroll;
+    } */
+
+  .address {
+    max-width: 45vw;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .addressBox {
     margin: auto;
     text-align: center;
-    border: 1px solid rgb(90, 144, 190);
-    background-color: aliceblue;
-    border-radius: 10px;
-    padding: 0.5em;
-    margin-left: -50px;
-    margin-top: 20px;
-    left: 50%;
-    width: 100px;
-    bottom: 0px;
+    max-width: 25vw;
+    max-height: 15vh;
+    overflow: hidden;
   }
-  
-  .sub {
-    margin: auto;
+
+  .addressBox:hover {
+    overflow: scroll;
+  }
+  .address {
     max-width: 35vw;
   }
-  
+}

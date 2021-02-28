@@ -10,24 +10,31 @@ function Display({
   clearFeatures,
   address,
 }) {
+  //REFACTOR TO USE DB DATA INSTEAD
   return (
     <div className={styles.container}>
-      <h2>hello</h2>
       <button className={styles.backButton} onClick={decComponent}>
         ← back
       </button>
-      <p>{address}</p>
-      <p></p>
+      <h3>Vancation Spot:</h3>
+
+      <div className={styles.addressBox}>
+        <p className={styles.address}>{address}</p>
+      </div>
+
       {checkList.map((c, i) => {
         return (
-          <label key={c.item}>
-            {c.item}
-            <input
+          <div className={styles.details}>
+            <span key={c.item}>
+              {c.item}
+              {/* <input
               type="checkbox"
               name={c.item}
               checked={checkedItems[c.item]}
-            />
-          </label>
+            /> */}
+              <p>{checkedItems[c.item] ? "✅" : "✖"} </p>
+            </span>
+          </div>
         );
       })}
       <button className={styles.saveButton} onClick={clearFeatures}>
