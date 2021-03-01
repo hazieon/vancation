@@ -260,9 +260,10 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
                         Details
                       </button>
                       <button
+                        className={styles.detailButton}
                         onClick={() => {
                           if (window.confirm("Delete this Vancation spot?")) {
-                            // removeMarker(selectedId);
+                            removeMarker(selectedId);
                           } else {
                             console.log("no deletion");
                           }
