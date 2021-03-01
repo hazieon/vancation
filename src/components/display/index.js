@@ -16,8 +16,17 @@ function Display({
   const spot = presetData.find((obj) => {
     return obj.id === selectedId;
   });
+  // console.log(spot.details);
+  // const keys = checkList.map((obj) => {
+  //   return obj.item === spot.details;
+  // });
+  // console.log(keys);
 
-  console.log(spot.id, "spot");
+  // checkList.map((item, i) => {
+  //  console.log(spot.details)
+  // });
+
+  //  checkList.filter()
 
   return (
     <div className={styles.container}>
@@ -29,9 +38,22 @@ function Display({
         <label>Address:</label>
         <span className={styles.address}>{spot.address}</span>
       </div>
-      <button className={styles.saveButton} onClick={clearFeatures}>
+      <div>
+        <ul className={styles.detailsList}>
+          <label> Details:</label>
+          {checkList.map((c, i) => {
+            return (
+              <label className={styles.detailsListItem} key={c.item}>
+                {c.item}
+                <> {spot.details.includes(c.item) ? "☑" : "✖"}</>
+              </label>
+            );
+          })}
+        </ul>
+      </div>
+      {/* <button className={styles.saveButton} onClick={clearFeatures}>
         save
-      </button>
+      </button> */}
     </div>
   );
 }
@@ -59,3 +81,9 @@ export default Display;
 // );
 // })} */
 // }
+
+// {Object.keys(spot).map((item, i) => (
+//   <li key={i}>
+//     <p>{spot.details}</p>
+//   </li>
+// ))}

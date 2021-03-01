@@ -12,10 +12,19 @@
   border: 1px solid rgb(90, 144, 190);
   background-color: aliceblue;
 }
-
+/* 
 .details * {
   display: inline;
   margin: 1em;
+} */
+.detailsList {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.detailsListItem {
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 /* .backButton {
     margin: auto;
