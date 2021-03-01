@@ -5,9 +5,9 @@
 }
 .container {
   position: relative;
-  left: 3em;
+  left: 2em;
   text-align: center;
-  max-width: fit-content;
+  min-width: fit-content;
   max-height: 59vh;
   border-radius: 10px;
   box-shadow: 0px 2px 5px 2px rgb(22, 138, 153);

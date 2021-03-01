@@ -183,7 +183,7 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
           Vancation
         </h1>
         <Locate map={map} panTo={panTo} />
-        <Search />
+        {/* <Search /> */}
         <GoogleMap
           mapContainerStyle={mapStyles}
           center={mapCentre}
