@@ -23,6 +23,9 @@ import {
 import "@reach/combobox/styles.css";
 import Search from "../search/index";
 import Locate from "../locate";
+import Panel from "../panel";
+import Details from "../details";
+import Display from "../display";
 
 //<div>
 //Icons from
@@ -37,8 +40,9 @@ const MAPKEY = process.env.REACT_APP_MAPKEY;
 
 //set the map window size
 const mapStyles = {
-  width: "400px ", //100vw, 100vh
-  height: "400px",
+  width: "65vw", //100vw, 100vh
+  height: "55vh",
+  maxWidth: "400px",
   borderRadius: "10px",
 };
 
@@ -59,11 +63,27 @@ const options = {
   zoomControl: true,
 };
 
-function MapContainer() {
+const presets = [
+  { lat: -1.2884, lng: 36.8233 },
+  { lat: -3.745, lng: -38.523 },
+  { lat: 52.52011994421292, lng: -1.4640778962357217 },
+  { lat: 52.0507548306133, lng: -1.7856869475872172 },
+];
+
+function MapContainer({ presetData, postNewMarker, removeMarker }) {
+  //state for the map functionality:
   const [map, setMap] = useState(null);
   const [point, setPoint] = useState([]);
   const [view, setView] = useState([]);
   const [display, setDisplay] = useState(false);
+  //state for managing markers and component display:
+  const [detailDisplay, setDetailDisplay] = useState(false);
+  const [currentPanel, setCurrentPanel] = useState(0);
+  //state for storing data of user's session:
+  const [checkedItems, setCheckedItems] = useState({});
+  const [address, setAddress] = useState("");
+  const [selectedId, setSelectedId] = useState(0);
+  // const [newData, setNewData] = useState({});
 
   //load script and error script from google maps npm
   const { isLoaded, loadError } = useJsApiLoader({
@@ -96,6 +116,7 @@ function MapContainer() {
 
   //useEffect to set the view state asynchronously (as it was one step behind)
   useEffect(() => {
+    setCurrentPanel(0);
     if (point.lat) {
       let viewArr = [];
       viewArr.push(point);
@@ -112,79 +133,254 @@ function MapContainer() {
     console.log(loadError);
     return "Error loading map";
   }
+  function handleFeatures(event) {
+    setCheckedItems({
+      ...checkedItems,
+      [event.target.name]: event.target.checked,
+    });
+    console.log(checkedItems);
+    //set to false if checked again
+  }
+
+  function clearFeatures() {
+    setCheckedItems({});
+  }
+
+  function createAddress(string) {
+    setAddress(string);
+    console.log(address);
+  }
+
+  // function updateData(object) {
+  //   setNewData(object);
+  //   // postNewMarker(newData);
+  //   console.log("new data updated");
+  //   console.log(newData);
+  // }
+  const componentPages = [0, 1, 2];
+  function incComponent() {
+    //array with order of pages, move to NEXT index on button click
+    if (currentPanel < componentPages.length) {
+      setCurrentPanel(currentPanel + 1);
+    } else {
+      return currentPanel;
+    }
+  }
+  function decComponent() {
+    if (currentPanel > 0) {
+      setCurrentPanel(currentPanel - 1);
+    } else {
+      return currentPanel;
+    }
+  }
 
   return isLoaded ? (
-    <div className={styles.container}>
-      <h1 className={styles.label}>
-        <span role="img" aria-label="van">
-          🚐
-        </span>
-        Vancation
-      </h1>
-      <Locate map={map} panTo={panTo} />
-      <Search />
-      <GoogleMap
-        mapContainerStyle={mapStyles}
-        center={mapCentre}
-        zoom={10}
-        onLoad={onLoad}
-        onUnmount={onUnmount}
-        options={options}
-        onClick={(e) => {
-          setPoint({
-            lat: e.latLng.lat(),
-            lng: e.latLng.lng(),
-            time: new Date(),
-            placeId: e.placeId,
-          });
-          console.log(point, "points");
-        }}
-      >
-        {/* Child components, e.g. markers, info windows: */}
+    <div className={styles.page}>
+      <div className={styles.container}>
+        <h1 className={styles.label}>
+          <span role="img" aria-label="van">
+            🚐
+          </span>
+          Vancation
+        </h1>
+        <Locate map={map} panTo={panTo} />
+        {/* <Search /> */}
+        <GoogleMap
+          mapContainerStyle={mapStyles}
+          center={mapCentre}
+          zoom={10}
+          onLoad={onLoad}
+          onUnmount={onUnmount}
+          options={options}
+          onClick={(e) => {
+            setPoint({
+              lat: e.latLng.lat(),
+              lng: e.latLng.lng(),
+              time: new Date(),
+              placeId: e.placeId,
+            });
+            console.log(point, "points ");
+            clearFeatures();
+          }}
+        >
+          {/* Child components, e.g. markers, info windows: */}
 
-        {point.time ? (
-          <Marker
-            key={point.time.toISOString()}
-            position={{ lat: point.lat, lng: point.lng }}
-            icon={{
-              url: "./van2.svg",
-              scaledSize: new window.google.maps.Size(25, 25),
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(12, 12),
-            }}
-            onClick={() => {
-              setDisplay(true);
-              console.log("marker click ");
-            }}
+          {presetData[1]
+            ? presetData.map((p, i) => {
+                //display preset markers at preset points
+                return (
+                  <Marker
+                    key={p.id}
+                    position={{
+                      lat: parseFloat(p.lat),
+                      lng: parseFloat(p.lng),
+                    }}
+                    icon={{
+                      url: "./van4.svg",
+                      scaledSize: new window.google.maps.Size(28, 28),
+                      origin: new window.google.maps.Point(0, 0),
+                      anchor: new window.google.maps.Point(12, 12),
+                    }}
+                    onClick={() => {
+                      setDetailDisplay({
+                        id: p.id,
+                        lat: parseFloat(p.lat),
+                        lng: parseFloat(p.lng),
+                        index: i,
+                        time: p.date,
+                        details: p.details,
+                      });
+                      setSelectedId(p.id);
+                      console.log(selectedId);
+                      setDisplay(false);
+                      setCurrentPanel(0);
+                      console.log(p);
+                    }}
+                  />
+                );
+              })
+            : null}
+
+          {detailDisplay.lat
+            ? presetData.map((p, i) => {
+                //display popup for preset markers
+                return (
+                  <InfoWindow
+                    key={p.id}
+                    className={styles.infoPop}
+                    position={detailDisplay}
+                    onCloseClick={() => setDetailDisplay({})}
+                  >
+                    <div>
+                      <h2>Vancation Spot!</h2>
+
+                      <button
+                        onClick={() => setCurrentPanel(2)}
+                        className={styles.detailButton}
+                      >
+                        Details
+                      </button>
+                      <button
+                        className={styles.detailButton}
+                        onClick={() => {
+                          if (window.confirm("Delete this Vancation spot?")) {
+                            removeMarker(selectedId);
+                          } else {
+                            console.log("no deletion");
+                          }
+                        }}
+                      >
+                        x
+                      </button>
+                    </div>
+                  </InfoWindow>
+                );
+              })
+            : null}
+
+          {point.time ? (
+            //NEW marker to show on mouse click
+            <Marker
+              key={point.time.toISOString()}
+              position={{ lat: point.lat, lng: point.lng }}
+              icon={{
+                url: "./van2.svg",
+                scaledSize: new window.google.maps.Size(30, 30),
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(12, 12),
+              }}
+              onClick={() => {
+                setDisplay(true);
+                setDetailDisplay({});
+                console.log("marker click ");
+              }}
+            />
+          ) : (
+            ""
+          )}
+
+          {display ? (
+            //info popup for NEW marker click
+            <InfoWindow
+              className={styles.infoPop}
+              position={{ lat: view[0].lat, lng: view[0].lng }}
+              onCloseClick={() => setDisplay(false)}
+            >
+              <div>
+                <h2>New Vancation Spot!</h2>
+                <p>
+                  {view[0].time
+                    ? String(formatRelative(view[0].time, new Date()))
+                    : ""}
+                </p>
+                <button
+                  className={styles.detailButton}
+                  onClick={() => setCurrentPanel(0)}
+                >
+                  Add Spot
+                </button>
+              </div>
+            </InfoWindow>
+          ) : null}
+        </GoogleMap>
+      </div>
+
+      {currentPanel === 0 && (
+        <section className={styles.panelSection}>
+          <Panel
+            incComponent={incComponent}
+            decComponent={decComponent}
+            createAddress={createAddress}
+            // updateData={updateData}
+            address={address}
+            time={point ? point.time : ""}
+            lat={point ? point.lat : ""}
+            lng={point ? point.lng : ""}
           />
-        ) : (
-          ""
-        )}
+        </section>
+      )}
+      {currentPanel === 1 && (
+        <section className={styles.detailsSection}>
+          <Details
+            incComponent={incComponent}
+            decComponent={decComponent}
+            handleFeatures={handleFeatures}
+            checkedItems={checkedItems}
+            clearFeatures={clearFeatures}
+            // updateData={updateData}
+            postNewMarker={postNewMarker}
+            address={address}
+            lat={point ? point.lat : ""}
+            lng={point ? point.lng : ""}
+            time={point ? point.time : ""}
+            place={point ? point.placeId : ""}
+          />
+        </section>
+      )}
 
-        {display ? (
-          <InfoWindow
-            className={styles.infoPop}
-            position={{ lat: view[0].lat, lng: view[0].lng }}
-            onCloseClick={() => setDisplay(false)}
-          >
-            <div>
-              <h2>Vancation Spot!</h2>
-              <p>
-                {view[0].time
-                  ? String(formatRelative(view[0].time, new Date()))
-                  : ""}
-              </p>
-              <button className={styles.detailButton}>Details</button>
-            </div>
-          </InfoWindow>
-        ) : null}
-      </GoogleMap>
+      {currentPanel === 2 && (
+        <section className={styles.displaySection}>
+          <Display
+            incComponent={incComponent}
+            decComponent={decComponent}
+            handleFeatures={handleFeatures}
+            checkedItems={checkedItems}
+            clearFeatures={clearFeatures}
+            address={address}
+            presetData={presetData}
+            selectedId={selectedId}
+            // updateData={updateData}
+          />
+        </section>
+      )}
     </div>
   ) : (
     <></>
   );
 }
 export default MapContainer;
+
+// if (current panel state === a){render panel} else render details
 
 //optional other code: save clicked points into array
 //create multiple click markers by mapping this array

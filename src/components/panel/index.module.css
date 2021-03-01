@@ -1,0 +1,95 @@
+.addressBox {
+  margin: auto;
+  text-align: center;
+  /* border: 2px solid red; */
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 25vh;
+}
+
+.addressBox:hover {
+  overflow: scroll;
+}
+
+.address {
+  display: flex;
+  flex-direction: column;
+}
+
+.getButton {
+  margin: auto;
+  text-align: center;
+  border: 1px solid rgb(90, 144, 190);
+  background-color: aliceblue;
+  border-radius: 25px;
+}
+
+.addButton {
+  position: absolute;
+  margin: auto;
+  text-align: center;
+  border: 1px solid rgb(90, 144, 190);
+  background-color: aliceblue;
+  border-radius: 10px;
+  padding: 0.5em;
+  margin-left: -50px;
+  left: 50%;
+  width: 100px;
+  bottom: 0px;
+}
+
+@media screen and (max-width: 600px) {
+  .addressBox {
+    margin: auto;
+    text-align: center;
+    max-width: 50vw;
+    max-height: min-content;
+    /* border: 2px solid red; */
+    overflow: hidden;
+  }
+
+  /* .addressBox:hover {
+    overflow: scroll;
+  } */
+
+  .address {
+    max-width: 45vw;
+  }
+  .getButton {
+    margin: auto;
+    text-align: center;
+    border: 1px solid rgb(90, 144, 190);
+    background-color: aliceblue;
+    border-radius: 25px;
+  }
+
+  /* .addButton {
+    margin: auto;
+    text-align: center;
+    border: 1px solid rgb(90, 144, 190);
+    background-color: aliceblue;
+    border-radius: 10px;
+    padding: 0.1em;
+    position: absolute;
+    right: -20%;
+    width: 80px;
+    bottom: 0px;
+  } */
+}
+
+@media screen and (min-width: 600px) {
+  .addressBox {
+    margin: auto;
+    text-align: center;
+    max-width: 25vw;
+    max-height: 25vh;
+    overflow: hidden;
+  }
+
+  .addressBox:hover {
+    overflow: scroll;
+  }
+  .address {
+    max-width: 35vw;
+  }
+}
