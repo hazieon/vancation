@@ -40,8 +40,9 @@ const MAPKEY = process.env.REACT_APP_MAPKEY;
 
 //set the map window size
 const mapStyles = {
-  width: "400px ", //100vw, 100vh
-  height: "400px",
+  width: "65vw", //100vw, 100vh
+  height: "48vh",
+  maxWidth: "400px",
   borderRadius: "10px",
 };
 
