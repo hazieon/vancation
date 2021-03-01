@@ -70,15 +70,18 @@ const presets = [
 ];
 
 function MapContainer({ presetData, postNewMarker, removeMarker }) {
+  //state for the map functionality:
   const [map, setMap] = useState(null);
   const [point, setPoint] = useState([]);
   const [view, setView] = useState([]);
   const [display, setDisplay] = useState(false);
+  //state for managing markers and component display:
   const [detailDisplay, setDetailDisplay] = useState(false);
   const [currentPanel, setCurrentPanel] = useState(0);
+  //state for storing data of user's session:
   const [checkedItems, setCheckedItems] = useState({});
   const [address, setAddress] = useState("");
-  const [selectedId, setSelectedId] = useState(null);
+  const [selectedId, setSelectedId] = useState(0);
   // const [newData, setNewData] = useState({});
 
   //load script and error script from google maps npm
@@ -219,14 +222,17 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
                     }}
                     onClick={() => {
                       setDetailDisplay({
+                        id: p.id,
                         lat: parseFloat(p.lat),
                         lng: parseFloat(p.lng),
                         index: i,
                         time: p.date,
                         details: p.details,
                       });
-                      setDisplay(false);
                       setSelectedId(p.id);
+                      console.log(selectedId);
+                      setDisplay(false);
+                      setCurrentPanel(0);
                       console.log(p);
                     }}
                   />
@@ -253,7 +259,15 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
                       >
                         Details
                       </button>
-                      <button onClick={() => removeMarker(selectedId)}>
+                      <button
+                        onClick={() => {
+                          if (window.confirm("Delete this Vancation spot?")) {
+                            // removeMarker(selectedId);
+                          } else {
+                            console.log("no deletion");
+                          }
+                        }}
+                      >
                         x
                       </button>
                     </div>

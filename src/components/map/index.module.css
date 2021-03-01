@@ -7,7 +7,7 @@
   position: relative;
   left: 3em;
   text-align: center;
-  max-width: max-content;
+  max-width: fit-content;
   max-height: 59vh;
   border-radius: 10px;
   box-shadow: 0px 2px 5px 2px rgb(22, 138, 153);
@@ -28,7 +28,7 @@
   text-align: center;
   border-radius: 10px;
   border: 3px solid blue;
-  height: max-content + 10px;
+  height: max-content;
 }
 
 .displaySection {
@@ -56,6 +56,10 @@
   }
 
   .detailsSection {
+    margin: auto;
+    min-width: 60vw;
+  }
+  .displaySection {
     margin: auto;
     min-width: 60vw;
   }

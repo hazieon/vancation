@@ -13,16 +13,22 @@ function Display({
   updateData,
   selectedId,
 }) {
-  //REFACTOR TO USE DB DATA INSTEAD
-  console.log(presetData);
-  console.log("display");
+  const spot = presetData.find((obj) => {
+    return obj.id === selectedId;
+  });
+
+  console.log(spot.id, "spot");
+
   return (
     <div className={styles.container}>
       <button className={styles.backButton} onClick={decComponent}>
         ← back
       </button>
       <h3>Vancation Spot:</h3>
-
+      <div className={styles.addressBox}>
+        <label>Address:</label>
+        <span className={styles.address}>{spot.address}</span>
+      </div>
       <button className={styles.saveButton} onClick={clearFeatures}>
         save
       </button>

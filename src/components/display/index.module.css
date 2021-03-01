@@ -58,14 +58,14 @@
   margin: auto;
   text-align: center;
   /* border: 2px solid red; */
-  overflow-x: hidden;
-  overflow-y: scroll;
-  height: 25vh;
+  /* overflow-x: hidden;
+  overflow-y: scroll; */
+  /* height: 25vh; */
 }
 
-.addressBox:hover {
+/* .addressBox:hover {
   overflow: scroll;
-}
+} */
 
 .address {
   display: flex;
@@ -79,7 +79,7 @@
     max-width: 50vw;
     max-height: min-content;
     /* border: 2px solid red; */
-    overflow: hidden;
+    /* overflow: hidden; */
   }
 
   /* .addressBox:hover {
@@ -100,9 +100,9 @@
     overflow: hidden;
   }
 
-  .addressBox:hover {
+  /* .addressBox:hover {
     overflow: scroll;
-  }
+  } */
   .address {
     max-width: 35vw;
   }
