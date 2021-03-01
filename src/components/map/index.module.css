@@ -14,7 +14,7 @@
 }
 
 .panelSection {
-  right: 3em;
+  right: 2em;
   position: relative;
   text-align: center;
   border-radius: 10px;
@@ -24,7 +24,7 @@
 }
 
 .detailsSection {
-  right: 3em;
+  right: 2em;
   position: relative;
   text-align: center;
   border-radius: 10px;
@@ -34,7 +34,7 @@
 }
 
 .displaySection {
-  right: 3em;
+  right: 2em;
   position: relative;
   text-align: center;
   border-radius: 10px;
@@ -43,7 +43,7 @@
   min-width: 300px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 900px) {
   .page {
     display: flex;
     flex-direction: column;
@@ -55,21 +55,24 @@
   }
   .panelSection {
     margin: auto;
+    top: 2rem;
     min-width: 60vw;
   }
 
   .detailsSection {
     margin: auto;
+    top: 2rem;
     min-width: 60vw;
   }
   .displaySection {
     margin: auto;
+    top: 2rem;
     min-width: 60vw;
   }
 }
 
 /* The "responsive" class is added to the nav with JavaScript when the user clicks on the icon. This class makes the nav look good on small screens (display the links vertically instead of horizontally) */
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 900px) {
   .page {
     display: flex;
     flex-direction: row;
