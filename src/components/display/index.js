@@ -36,7 +36,9 @@ function Display({
       <h3>Vancation Spot:</h3>
       <div className={styles.addressBox}>
         <label>Address:</label>
-        <span className={styles.address}>{spot.address}</span>
+        <span className={styles.address}>
+          {spot.address ? spot.address : ""}
+        </span>
       </div>
       <div>
         <ul className={styles.detailsList}>
