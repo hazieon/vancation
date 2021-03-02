@@ -90,11 +90,11 @@ function App() {
   return (
     <div className="page">
       <div className="nav">
-        <a href="#home" className="active">
+        <a href="/" className="active">
           🏠
         </a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
+        <a href="/">Contact</a>
+        <a href="/">About</a>
       </div>
       <div className="App">
         <h1 className="heading">Vancation</h1>
