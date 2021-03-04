@@ -11,6 +11,11 @@
   border-radius: 25px;
   border: 1px solid rgb(90, 144, 190);
   background-color: aliceblue;
+  transition: 0.3s ease-in-out;
+}
+
+.detailButton:hover {
+  background-color: rgb(183, 217, 247);
 }
 /* 
 .details * {
@@ -41,6 +46,11 @@
   border: 1px solid rgb(90, 144, 190);
   background-color: aliceblue;
   border-radius: 25px;
+  transition: 0.3s ease-in-out;
+}
+
+.backButton:hover {
+  background-color: rgb(183, 217, 247);
 }
 
 .saveButton {
@@ -56,8 +66,12 @@
   left: 50%;
   width: 100px;
   bottom: 0px;
+  transition: 0.3s ease-in-out;
 }
 
+.savebutton:hover {
+  background-color: rgb(183, 217, 247);
+}
 .sub {
   margin: auto;
   max-width: 35vw;
@@ -66,15 +80,7 @@
 .addressBox {
   margin: auto;
   text-align: center;
-  /* border: 2px solid red; */
-  /* overflow-x: hidden;
-  overflow-y: scroll; */
-  /* height: 25vh; */
 }
-
-/* .addressBox:hover {
-  overflow: scroll;
-} */
 
 .address {
   display: flex;
@@ -109,9 +115,6 @@
     overflow: hidden;
   }
 
-  /* .addressBox:hover {
-    overflow: scroll;
-  } */
   .address {
     max-width: 35vw;
   }

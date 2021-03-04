@@ -37,7 +37,7 @@ function Display({
       <div className={styles.addressBox}>
         <label>Address:</label>
         <span className={styles.address}>
-          {spot.address ? spot.address : ""}
+          {spot && spot.address ? spot.address : ""}
         </span>
       </div>
       <div>
@@ -47,7 +47,7 @@ function Display({
             return (
               <label className={styles.detailsListItem} key={c.item}>
                 {c.item}
-                <> {spot.details.includes(c.item) ? "☑" : "✖"}</>
+                <> {spot && spot.details.includes(c.item) ? "☑" : "✖"}</>
               </label>
             );
           })}

@@ -21,7 +21,13 @@
   text-align: center;
   border: 1px solid rgb(90, 144, 190);
   background-color: aliceblue;
-  border-radius: 25px;
+  border-radius: 7px;
+  padding: 3px 10px;
+  transition: 0.3s ease-in-out;
+}
+
+.getButton:hover {
+  background-color: rgb(179, 219, 255);
 }
 
 .addButton {
@@ -36,6 +42,11 @@
   left: 50%;
   width: 100px;
   bottom: 0px;
+  transition: 0.3s ease-in-out;
+}
+
+.addButton:hover {
+  background-color: rgb(179, 219, 255);
 }
 
 @media screen and (max-width: 600px) {
