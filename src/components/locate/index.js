@@ -24,9 +24,3 @@ function Locate(map) {
 }
 
 export default Locate;
-
-//panto function issue
-//maybe need to import into this file
-//   console.log(position.coords.latitude);
-//   console.log(position.coords.longitude);
-//   console.log(panTo);

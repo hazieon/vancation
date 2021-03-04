@@ -46,6 +46,49 @@
   max-width: 55vw;
 }
 
+.label {
+  position: absolute;
+  top: 0.07em;
+  left: 0.3rem;
+  color: rgb(36, 35, 35);
+  text-shadow: 0px 1px 3px aliceblue;
+  z-index: 2;
+  margin: 0;
+  padding: 0;
+  font-size: x-large;
+  font-family: "moonllime";
+  user-select: none;
+}
+
+.detailButton {
+  margin: auto;
+  text-align: center;
+  border-radius: 15px;
+  border: 1px solid rgb(90, 144, 190);
+  background-color: aliceblue;
+  z-index: 2;
+  transition: 0.3s ease-in-out;
+}
+
+.detailButton:hover {
+  background-color: rgb(183, 217, 247);
+}
+
+.infoPop {
+  text-align: center;
+  margin: auto;
+}
+
+.credsBox {
+  position: relative;
+}
+.creds {
+  font-size: x-small;
+  position: absolute;
+  bottom: -55px;
+  right: 0;
+}
+
 @media screen and (max-width: 900px) {
   .page {
     display: flex;
@@ -103,37 +146,11 @@
     max-height: 55vh;
     margin-right: 2%;
   }
-}
 
-.label {
-  position: absolute;
-  top: 0.07em;
-  left: 0.3rem;
-  color: rgb(36, 35, 35);
-  text-shadow: 0px 1px 3px aliceblue;
-  z-index: 2;
-  margin: 0;
-  padding: 0;
-  font-size: x-large;
-  font-family: "moonllime";
-  user-select: none;
-}
-
-.detailButton {
-  margin: auto;
-  text-align: center;
-  border-radius: 15px;
-  border: 1px solid rgb(90, 144, 190);
-  background-color: aliceblue;
-  z-index: 2;
-  transition: 0.3s ease-in-out;
-}
-
-.detailButton:hover {
-  background-color: rgb(183, 217, 247);
-}
-
-.infoPop {
-  text-align: center;
-  margin: auto;
+  .creds {
+    font-size: xx-small;
+    position: absolute;
+    bottom: -100px;
+    right: -20px;
+  }
 }

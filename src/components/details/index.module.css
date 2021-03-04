@@ -17,17 +17,6 @@
 .detailButton:hover {
   background-color: rgb(183, 217, 247);
 }
-/* 
-.container * {
-  display: block;
-} */
-/* .backButton {
-  margin: auto;
-  text-align: center;
-  border: 1px solid rgb(90, 144, 190);
-  background-color: aliceblue;
-  border-radius: 25px;
-} */
 
 .backButton {
   position: absolute;
@@ -66,7 +55,31 @@
   margin: auto;
   max-width: 33vw;
 }
-
 .label {
-  padding: 0.1em;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+}
+
+.label > span {
+  justify-content: center;
+  align-items: center;
+  color: rgb(22, 138, 153);
+}
+
+.label > input {
+  height: 18px;
+  width: 18px;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 1px solid rgb(22, 138, 153);
+  border-radius: 5px;
+  outline: none;
+  transition: 0.3s;
+  background-color: aliceblue;
+}
+
+.label > input:checked {
+  border: 1px solid rgb(22, 138, 153);
+  background-color: rgb(22, 138, 153);
 }

@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
-// import { Map, GoogleApiWrapper } from "google-maps-react";
+
 import customMapStyle from "../../mapstyles";
 import {
   GoogleMap,
@@ -13,26 +13,13 @@ import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
 } from "use-places-autocomplete";
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxPopover,
-  ComboboxList,
-  ComboboxOption,
-} from "@reach/combobox";
+
 import "@reach/combobox/styles.css";
 import Search from "../search/index";
 import Locate from "../locate";
 import Panel from "../panel";
 import Details from "../details";
 import Display from "../display";
-
-//<div>
-//Icons from
-//<a href="https://www.flaticon.com/" title="xnimrodx">
-//  xnimrodx and linector
-//</a>
-//</div>
 
 //libraries prop kept separate, move to .env later
 const libraries = ["places"];
@@ -41,6 +28,7 @@ const MAPKEY = process.env.REACT_APP_MAPKEY;
 //set the map window size
 const mapStyles = {
   width: "65vw", //100vw, 100vh
+  minWidth: "280px",
   maxWidth: "400px",
   height: "55vh",
   borderRadius: "10px",
@@ -324,7 +312,6 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
           ) : null}
         </GoogleMap>
       </div>
-
       {currentPanel === 0 && (
         <section className={styles.panelSection}>
           <Panel
@@ -357,7 +344,6 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
           />
         </section>
       )}
-
       {currentPanel === 2 && (
         <section className={styles.displaySection}>
           <Display
@@ -373,6 +359,14 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
           />
         </section>
       )}
+      <div className={styles.credsBox}>
+        <div className={styles.creds}>
+          Icons from
+          <a href="https://www.flaticon.com/" title="xnimrodx">
+            xnimrodx and linector
+          </a>
+        </div>
+      </div>
     </div>
   ) : (
     <></>
@@ -384,38 +378,3 @@ export default MapContainer;
 
 //optional other code: save clicked points into array
 //create multiple click markers by mapping this array
-
-// setPoint((array) => [
-//   ...array,
-//   {
-//     lat: e.latLng.lat(),
-//     lng: e.latLng.lng(),
-//     time: new Date(),
-//     placeId: e.placeId,
-//   },
-// ]);
-
-// {point
-//     ? point.map((p) => {
-//         return (
-//           <Marker
-//             key={p.time.toISOString()}
-//             position={{ lat: p.lat, lng: p.lng }}
-//           />
-//         );
-//       })
-//     : ""}
-
-//on click functionality moved outside (didn't work):
-//   const onMapClick = useCallback((e) => {
-//     //   console.log(e);
-//     setPoint([
-//       {
-//         lat: e.latLng.lat(),
-//         lng: e.latLng.lng(),
-//         time: new Date(),
-//         placeId: e.placeId,
-//       },
-//     ]);
-//     console.log(point, "points");
-//   }, []);

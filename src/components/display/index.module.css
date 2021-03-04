@@ -49,13 +49,7 @@
     text-align: center;
     max-width: 50vw;
     max-height: min-content;
-    /* border: 2px solid red; */
-    /* overflow: hidden; */
   }
-
-  /* .addressBox:hover {
-      overflow: scroll;
-    } */
 
   .address {
     max-width: 45vw;

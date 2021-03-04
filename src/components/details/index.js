@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./index.module.css";
 import { checkList } from "./checkList";
-//CLEAR THE DETAILS LIST AFTER SAVE AND CLICKING A NEW LOCATION!!! AND AFTER REFRESH!
+
 function Details({
   incComponent,
   decComponent,
@@ -25,13 +25,14 @@ function Details({
         return (
           <label className={styles.label} key={c.item}>
             {c.item}
+
             <input
-              className={styles.inputBox}
               type="checkbox"
               name={c.item}
               checked={checkedItems[c.item]}
               onChange={handleFeatures}
             />
+            <span className={styles.inputCustom}> </span>
           </label>
         );
       })}
