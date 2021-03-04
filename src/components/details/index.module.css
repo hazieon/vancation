@@ -11,6 +11,11 @@
   border-radius: 25px;
   border: 1px solid rgb(90, 144, 190);
   background-color: aliceblue;
+  transition: 0.3s ease-in-out;
+}
+
+.detailButton:hover {
+  background-color: rgb(183, 217, 247);
 }
 /* 
 .container * {
@@ -31,8 +36,12 @@
   border: 1px solid rgb(90, 144, 190);
   background-color: aliceblue;
   border-radius: 25px;
+  transition: 0.3s ease-in-out;
 }
 
+.backButton:hover {
+  background-color: rgb(183, 217, 247);
+}
 .saveButton {
   position: relative;
   margin: auto;
@@ -46,9 +55,14 @@
   left: 50%;
   width: 100px;
   bottom: 0px;
+  transition: 0.3s ease-in-out;
+}
+
+.saveButton:hover {
+  background-color: rgb(183, 217, 247);
 }
 
 .sub {
   margin: auto;
-  max-width: 35vw;
+  max-width: 33vw;
 }
