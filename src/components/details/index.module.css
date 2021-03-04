@@ -66,3 +66,7 @@
   margin: auto;
   max-width: 33vw;
 }
+
+.label {
+  padding: 0.1em;
+}

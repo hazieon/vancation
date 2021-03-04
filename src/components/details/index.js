@@ -23,9 +23,10 @@ function Details({
       </p>
       {checkList.map((c, i) => {
         return (
-          <label key={c.item}>
+          <label className={styles.label} key={c.item}>
             {c.item}
             <input
+              className={styles.inputBox}
               type="checkbox"
               name={c.item}
               checked={checkedItems[c.item]}
@@ -43,13 +44,6 @@ function Details({
         className={styles.saveButton}
         onClick={() => {
           console.log(checkedItems);
-          // updateData({
-          //   lat: lat,
-          //   lng: lng,
-          //   address: address,
-          //   date: time,
-          //   details: checkedItems,
-          // });
           console.log(address.length, checkedItems);
           if (
             address !== ("Choose a vancation spot on the map." || "") &&
@@ -72,8 +66,6 @@ function Details({
             console.log("set an address first");
           }
           return;
-
-          // incComponent();
         }}
       >
         Save ➡
