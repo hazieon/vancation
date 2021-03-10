@@ -1,5 +1,4 @@
 import React, { useState, useCallback, useRef, useEffect } from "react";
-
 import customMapStyle from "../../mapstyles";
 import {
   GoogleMap,
@@ -9,13 +8,13 @@ import {
 } from "@react-google-maps/api";
 import styles from "./index.module.css";
 import { formatRelative } from "date-fns";
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
+// import usePlacesAutocomplete, {
+//   getGeocode,
+//   getLatLng,
+// } from "use-places-autocomplete";
 
 import "@reach/combobox/styles.css";
-import Search from "../search/index";
+// import Search from "../search/index";
 import Locate from "../locate";
 import Panel from "../panel";
 import Details from "../details";
@@ -36,10 +35,10 @@ const mapStyles = {
 
 //set the map initial location
 const mapCentre = {
-  lat: -1.2884,
-  lng: 36.8233,
-  //   lat: -3.745,
-  //   lng: -38.523,
+  // lat: -1.2884,
+  // lng: 36.8233,
+  lat: -3.745,
+  lng: -38.523,
 };
 
 //custom map styles from JSON
@@ -51,12 +50,12 @@ const options = {
   zoomControl: true,
 };
 
-const presets = [
-  { lat: -1.2884, lng: 36.8233 },
-  { lat: -3.745, lng: -38.523 },
-  { lat: 52.52011994421292, lng: -1.4640778962357217 },
-  { lat: 52.0507548306133, lng: -1.7856869475872172 },
-];
+// const presets = [
+//   { lat: -1.2884, lng: 36.8233 },
+//   { lat: -3.745, lng: -38.523 },
+//   { lat: 52.52011994421292, lng: -1.4640778962357217 },
+//   { lat: 52.0507548306133, lng: -1.7856869475872172 },
+// ];
 
 function MapContainer({ presetData, postNewMarker, removeMarker }) {
   //state for the map functionality:
@@ -72,6 +71,7 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
   const [address, setAddress] = useState("");
   const [selectedId, setSelectedId] = useState(0);
   // const [newData, setNewData] = useState({});
+  const [initialCentre, setInitialCentre] = useState({});
 
   //load script and error script from google maps npm
   const { isLoaded, loadError } = useJsApiLoader({
@@ -79,6 +79,7 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
     googleMapsApiKey: MAPKEY,
     libraries,
   });
+
   //setting up functionality for searching:
   //retain state of the map WITHOUT causing rerenders
   //useCallback to avoid repeating similar code
@@ -90,6 +91,7 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
     const bounds = new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
     setMap(map);
+    panTo({ lat: 50.881146683957205, lng: 10.5104400792643 });
   }, []);
 
   const onUnmount = useCallback(function callback(map) {
@@ -99,7 +101,6 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
-    console.log("panto function map ");
   }, []);
 
   //useEffect to set the view state asynchronously (as it was one step behind)
@@ -175,7 +176,7 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
         {/* <Search /> */}
         <GoogleMap
           mapContainerStyle={mapStyles}
-          center={mapCentre}
+          defaultCenter={initialCentre}
           zoom={10}
           onLoad={onLoad}
           onUnmount={onUnmount}
