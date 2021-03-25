@@ -295,20 +295,17 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
               position={{ lat: view[0].lat, lng: view[0].lng }}
               onCloseClick={() => setDisplay(false)}
             >
-              <div>
-                <h2>New Vancation Spot!</h2>
-                <p>
-                  {view[0].time
-                    ? String(formatRelative(view[0].time, new Date()))
-                    : ""}
-                </p>
-                <button
-                  className={styles.detailButton}
-                  onClick={() => setCurrentPanel(0)}
-                >
-                  Add Spot
-                </button>
-              </div>
+              <>
+                <div>
+                  <h2>New Vancation Spot!</h2>
+                  <p>
+                    {view[0].time
+                      ? String(formatRelative(view[0].time, new Date()))
+                      : ""}
+                  </p>
+                </div>
+                <p>click 'get address'➡</p>
+              </>
             </InfoWindow>
           ) : null}
         </GoogleMap>
