@@ -1,4 +1,4 @@
-# 🚛 Vancation: Vanlife pocket map [IN DEVELOPMENT]
+# 🚛 Vancation: Vanlife pocket map 
 
  **Vancation is an app for people living or travelling in their campervan or car. 🚙🚛🚚
  Vanlifers pinpoint suitable parking spots on the map, selecting its qualities such as 'quiet', 'safe' and 'near green space'
