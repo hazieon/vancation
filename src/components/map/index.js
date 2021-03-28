@@ -111,8 +111,6 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
       viewArr.push(point);
       setView(viewArr);
       setDisplay(false);
-      console.log(viewArr, "viewArray");
-      console.log(view, "view state");
     } else {
       return;
     }
@@ -127,7 +125,6 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
       ...checkedItems,
       [event.target.name]: event.target.checked,
     });
-    console.log(checkedItems);
     //set to false if checked again
   }
 
@@ -137,15 +134,8 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
 
   function createAddress(string) {
     setAddress(string);
-    console.log(address);
   }
 
-  // function updateData(object) {
-  //   setNewData(object);
-  //   // postNewMarker(newData);
-  //   console.log("new data updated");
-  //   console.log(newData);
-  // }
   const componentPages = [0, 1, 2];
   function incComponent() {
     //array with order of pages, move to NEXT index on button click
@@ -188,7 +178,6 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
               time: new Date(),
               placeId: e.placeId,
             });
-            console.log(point, "points ");
             clearFeatures();
           }}
         >
@@ -220,10 +209,8 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
                         details: p.details,
                       });
                       setSelectedId(p.id);
-                      console.log(selectedId);
                       setDisplay(false);
                       setCurrentPanel(0);
-                      console.log(p);
                     }}
                   />
                 );
@@ -281,7 +268,6 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
               onClick={() => {
                 setDisplay(true);
                 setDetailDisplay({});
-                console.log("marker click ");
               }}
             />
           ) : (
@@ -371,8 +357,3 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
   );
 }
 export default MapContainer;
-
-// if (current panel state === a){render panel} else render details
-
-//optional other code: save clicked points into array
-//create multiple click markers by mapping this array

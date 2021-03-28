@@ -12,7 +12,6 @@ function Locate(map) {
               lat: position.coords.latitude,
               lng: position.coords.longitude,
             });
-            console.log("locate");
           },
           () => null
         );

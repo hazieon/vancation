@@ -44,8 +44,6 @@ function Details({
       <button
         className={styles.saveButton}
         onClick={() => {
-          console.log(checkedItems);
-          console.log(address.length, checkedItems);
           if (
             address !== ("Choose a vancation spot on the map." || "") &&
             Object.keys(checkedItems).length > 0
@@ -59,7 +57,6 @@ function Details({
                 date: time,
                 details: checkedItems,
               });
-              console.log("new marker posted!");
               incComponent();
             }
           } else {

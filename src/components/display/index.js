@@ -17,8 +17,6 @@ function Display({
     return obj.id === selectedId;
   });
 
-  //  checkList.filter()
-
   return (
     <div className={styles.container}>
       <button className={styles.backButton} onClick={decComponent}>

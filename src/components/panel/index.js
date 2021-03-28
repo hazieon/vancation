@@ -17,13 +17,11 @@ function Panel({
   time,
   placeId,
 }) {
-  console.log(lat, lng, placeId, time, "point in panel");
   async function reverseGeocode() {
     const res = await fetch(
       `https://us1.locationiq.com/v1/reverse.php?key=${MAPTOKEN}&format=json&lat=${lat}&lon=${lng}`
     );
     const data = await res.json();
-    console.log(data);
     if (data.display_name) {
       createAddress(data.display_name);
     } else {
