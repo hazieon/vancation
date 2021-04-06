@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { formatRelative } from "date-fns";
 import styles from "./index.module.css";
 const MAPTOKEN = process.env.REACT_APP_MAPTOKEN;
-// const MAPKEY = process.env.REACT_APP_MAPKEY;
-// const MAPURL = process.env.REACT_APP_MAP;
+
 require("dotenv").config();
 
 function Panel({
@@ -55,7 +54,3 @@ function Panel({
 }
 
 export default Panel;
-
-//google maps API for reverse geocoding costs, so I changed to a free service
-//google request link:
-//`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${MAPKEY}`
