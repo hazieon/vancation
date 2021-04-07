@@ -8,10 +8,6 @@ import {
 } from "@react-google-maps/api";
 import styles from "./index.module.css";
 import { formatRelative } from "date-fns";
-// import usePlacesAutocomplete, {
-//   getGeocode,
-//   getLatLng,
-// } from "use-places-autocomplete";
 
 import "@reach/combobox/styles.css";
 // import Search from "../search/index";
@@ -35,8 +31,6 @@ const mapStyles = {
 
 //set the map initial location
 const mapCentre = {
-  // lat: -1.2884,
-  // lng: 36.8233,
   lat: -3.745,
   lng: -38.523,
 };
@@ -49,13 +43,6 @@ const options = {
   //enable specific UI tools:
   zoomControl: true,
 };
-
-// const presets = [
-//   { lat: -1.2884, lng: 36.8233 },
-//   { lat: -3.745, lng: -38.523 },
-//   { lat: 52.52011994421292, lng: -1.4640778962357217 },
-//   { lat: 52.0507548306133, lng: -1.7856869475872172 },
-// ];
 
 function MapContainer({ presetData, postNewMarker, removeMarker }) {
   //state for the map functionality:
@@ -318,7 +305,6 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
             handleFeatures={handleFeatures}
             checkedItems={checkedItems}
             clearFeatures={clearFeatures}
-            // updateData={updateData}
             postNewMarker={postNewMarker}
             address={address}
             lat={point ? point.lat : ""}

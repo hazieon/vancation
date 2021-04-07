@@ -2,17 +2,7 @@ import React from "react";
 import styles from "./index.module.css";
 import { checkList } from "./checkList";
 
-function Display({
-  incComponent,
-  decComponent,
-  handleFeatures,
-  checkedItems,
-  clearFeatures,
-  address,
-  presetData,
-  updateData,
-  selectedId,
-}) {
+function Display({ decComponent, presetData, selectedId }) {
   const spot = presetData.find((obj) => {
     return obj.id === selectedId;
   });

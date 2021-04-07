@@ -20,8 +20,6 @@ function App() {
 
   useEffect(() => {
     fetchPresets();
-    // if (fetchPresets.length) fetchPresets();
-    //to rerun if the data changes
   }, []);
 
   async function postNewMarker(newPost) {

@@ -11,6 +11,7 @@ const checkList = [
   { item: "Near petrol stn" },
   { item: "Public bathrooms" },
   { item: "Away from traffic" },
+  { item: "No height limits" },
 ];
 
 module.exports = { checkList };

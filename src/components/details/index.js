@@ -7,8 +7,6 @@ function Details({
   decComponent,
   handleFeatures,
   checkedItems,
-  clearFeatures,
-  updateData,
   postNewMarker,
   address,
   lat,
