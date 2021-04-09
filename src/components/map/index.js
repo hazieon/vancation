@@ -78,7 +78,8 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
     const bounds = new window.google.maps.LatLngBounds();
     map.fitBounds(bounds);
     setMap(map);
-    panTo({ lat: 50.881146683957205, lng: 10.5104400792643 });
+    panTo({ lat: 52.0507548306133, lng: -1.7856869475872172 });
+    // panTo({ lat: 50.881146683957205, lng: 10.5104400792643 });
   }, []);
 
   const onUnmount = useCallback(function callback(map) {
@@ -325,7 +326,6 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
             address={address}
             presetData={presetData}
             selectedId={selectedId}
-            // updateData={updateData}
           />
         </section>
       )}
