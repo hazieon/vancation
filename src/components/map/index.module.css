@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: row;
   justify-content: center;
-  /* transition: 1s linear ease-in-out; */
 }
+
 .container {
   position: relative;
   left: 2em;
@@ -11,16 +11,14 @@
   min-width: fit-content;
   max-height: fit-content;
   border-radius: 10px;
-  box-shadow: 0px 1px 5px 2px rgb(22, 138, 153);
-}
+  box-shadow: 0px 0px 2px 4px rgb(22, 138, 153)}
 
 .panelSection {
   background-color: rgba(255, 255, 255, 0.979);
   position: relative;
   text-align: center;
   border-radius: 10px;
-  /* border: 1px solid rgb(22, 138, 153); */
-  box-shadow: 0px 1px 4px 2.5px rgb(22, 138, 153);
+  box-shadow: 0px 0px 2px 4px rgb(22, 138, 153);
   min-height: 50vh;
   width: 35vw;
   max-width: 55vw;
@@ -31,7 +29,7 @@
   position: relative;
   text-align: center;
   border-radius: 10px;
-  box-shadow: 0px 1px 4px 2.5px rgb(22, 138, 153);
+  box-shadow: 0px 0px 2px 4px rgb(22, 138, 153);
   height: fit-content;
   min-height: 50vh;
   width: 35vw;
@@ -43,7 +41,7 @@
   position: relative;
   text-align: center;
   border-radius: 10px;
-  box-shadow: 0px 1px 4px 2.5px rgb(22, 138, 153);
+  box-shadow: 0px 0px 2px 4px rgb(22, 138, 153);
   min-height: 50vh;
   width: 35vw;
   max-width: 55vw;

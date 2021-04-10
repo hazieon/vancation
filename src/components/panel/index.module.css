@@ -1,7 +1,6 @@
 .addressBox {
   margin: auto;
   text-align: center;
-  /* border: 2px solid red; */
   overflow-x: hidden;
   overflow-y: scroll;
   height: 25vh;
@@ -55,13 +54,8 @@
     text-align: center;
     max-width: 50vw;
     max-height: min-content;
-    /* border: 2px solid red; */
     overflow: hidden;
   }
-
-  /* .addressBox:hover {
-    overflow: scroll;
-  } */
 
   .address {
     max-width: 45vw;
@@ -74,19 +68,7 @@
     border-radius: 25px;
   }
 
-  /* .addButton {
-    margin: auto;
-    text-align: center;
-    border: 1px solid rgb(90, 144, 190);
-    background-color: aliceblue;
-    border-radius: 10px;
-    padding: 0.1em;
-    position: absolute;
-    right: -20%;
-    width: 80px;
-    bottom: 0px;
-  } */
-}
+  }
 
 @media screen and (min-width: 600px) {
   .addressBox {
