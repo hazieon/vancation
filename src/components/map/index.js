@@ -29,11 +29,11 @@ const mapStyles = {
   borderRadius: "10px",
 };
 
-//set the map initial location
-const mapCentre = {
-  lat: -3.745,
-  lng: -38.523,
-};
+//hard code to set the map initial location
+// const mapCentre = {
+//   lat: -3.745,
+//   lng: -38.523,
+// };
 
 //custom map styles from JSON
 const options = {
@@ -57,8 +57,7 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
   const [checkedItems, setCheckedItems] = useState({});
   const [address, setAddress] = useState("");
   const [selectedId, setSelectedId] = useState(0);
-  // const [newData, setNewData] = useState({});
-  const [initialCentre, setInitialCentre] = useState({});
+
 
   //load script and error script from google maps npm
   const { isLoaded, loadError } = useJsApiLoader({
@@ -130,7 +129,7 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
     if (currentPanel < componentPages.length) {
       setCurrentPanel(currentPanel + 1);
     } else {
-      return currentPanel;
+        return currentPanel;
     }
   }
   function decComponent() {
@@ -154,7 +153,6 @@ function MapContainer({ presetData, postNewMarker, removeMarker }) {
         {/* <Search /> */}
         <GoogleMap
           mapContainerStyle={mapStyles}
-          defaultCenter={initialCentre}
           zoom={10}
           onLoad={onLoad}
           onUnmount={onUnmount}

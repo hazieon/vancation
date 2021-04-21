@@ -13,6 +13,11 @@ function Details({
   lng,
   time,
 }) {
+  
+  function refreshPage() {
+    window.location.reload();
+  }
+
   return (
     <div className={styles.container}>
       <h3>Features:</h3>
@@ -56,6 +61,8 @@ function Details({
                 details: checkedItems,
               });
               incComponent();
+              //want to refresh the page here, but it prevents posting data to db
+             // refreshPage();
             }
           } else {
             alert("Error: Set an address & details first!");
