@@ -43,8 +43,8 @@ function App() {
         <a href="/" className="active">
           🏠
         </a>
-        <a href="/">Contact</a>
-        <a href="/">About</a>
+        <a href="https://hitchhikehazie.netlify.app/contact">Contact</a>
+        <a href="https://hitchhikehazie.netlify.app/about">About Me</a>
       </div>
       <div className="App">
         <h1 className="heading">Vancation</h1>
