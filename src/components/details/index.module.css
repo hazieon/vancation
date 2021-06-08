@@ -9,33 +9,33 @@
   margin: auto;
   text-align: center;
   border-radius: 25px;
-  border: 1px solid rgb(90, 144, 190);
+  border: 1px solid var(--blue);
   background-color: aliceblue;
   transition: 0.3s ease-in-out;
 }
 
 .detailButton:hover {
-  background-color: rgb(183, 217, 247);
+  background-color: var(--light-blue);
 }
 
 .backButton {
   position: absolute;
   top: 0.07em;
   left: 0.4rem;
-  border: 1px solid rgb(90, 144, 190);
+  border: 1px solid var(--blue);
   background-color: aliceblue;
   border-radius: 25px;
   transition: 0.3s ease-in-out;
 }
 
 .backButton:hover {
-  background-color: rgb(183, 217, 247);
+  background-color: var(--light-blue);
 }
 .saveButton {
   position: relative;
   margin: auto;
   text-align: center;
-  border: 1px solid rgb(90, 144, 190);
+  border: 1px solid var(--blue);
   background-color: aliceblue;
   border-radius: 10px;
   padding: 0.5em;
@@ -48,7 +48,7 @@
 }
 
 .saveButton:hover {
-  background-color: rgb(183, 217, 247);
+  background-color: var(--light-blue);
 }
 
 .sub {
@@ -64,7 +64,7 @@
 .label > span {
   justify-content: center;
   align-items: center;
-  color: rgb(22, 138, 153);
+  color: var(--deep-shade);
 }
 
 .label > input {
@@ -72,7 +72,7 @@
   width: 18px;
   -webkit-appearance: none;
   appearance: none;
-  border: 1px solid rgb(22, 138, 153);
+  border: 1px solid var(--deep-shade);
   border-radius: 5px;
   outline: none;
   transition: 0.3s;
@@ -80,6 +80,6 @@
 }
 
 .label > input:checked {
-  border: 1px solid rgb(22, 138, 153);
-  background-color: rgb(22, 138, 153);
+  border: 1px solid var(--deep-shade);
+  background-color: var(--deep-shade);
 }

@@ -18,14 +18,14 @@
   position: absolute;
   top: 0.07em;
   left: 0.4rem;
-  border: 1px solid rgb(90, 144, 190);
+  border: 1px solid var(--blue);
   background-color: aliceblue;
   border-radius: 25px;
   transition: 0.3s ease-in-out;
 }
 
 .backButton:hover {
-  background-color: rgb(183, 217, 247);
+  background-color: var(--light-blue);
 }
 
 .sub {

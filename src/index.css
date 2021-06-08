@@ -1,3 +1,21 @@
+:root {
+  --background-shade: #bca0ff;
+  --secondary-shade: rgba(233, 214, 255, 0.972);
+  --panel-shade: #d0c3ff;
+  --panel-mid-shade: #d8cefc;
+  --deep-shade: #18612b;
+  --mid-shade: #4aac64;
+  --green: #95d32c;
+
+  --white: #f2f2f2;
+  --light-shade: rgba(255, 255, 255, 0.979);
+  --deep-shade: rgb(22, 138, 153);
+  --purple: rgb(50, 22, 153);
+  --red: #b92a3d;
+  --blue: rgb(90, 144, 190);
+  --light-blue: rgb(183, 217, 247);
+}
+
 body {
   background-color: aliceblue;
   margin: 0;

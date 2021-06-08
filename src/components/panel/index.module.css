@@ -18,7 +18,7 @@
 .getButton {
   margin: auto;
   text-align: center;
-  border: 1px solid rgb(90, 144, 190);
+  border: 1px solid var(--blue);
   background-color: aliceblue;
   border-radius: 7px;
   padding: 3px 10px;
@@ -26,14 +26,14 @@
 }
 
 .getButton:hover {
-  background-color: rgb(179, 219, 255);
+  background-color: var(--light-blue);
 }
 
 .addButton {
   position: absolute;
   margin: auto;
   text-align: center;
-  border: 1px solid rgb(90, 144, 190);
+  border: 1px solid var(--blue);
   background-color: aliceblue;
   border-radius: 10px;
   padding: 0.5em;
@@ -45,7 +45,7 @@
 }
 
 .addButton:hover {
-  background-color: rgb(179, 219, 255);
+  background-color: var(--light-blue);
 }
 
 @media screen and (max-width: 600px) {
@@ -63,12 +63,11 @@
   .getButton {
     margin: auto;
     text-align: center;
-    border: 1px solid rgb(90, 144, 190);
+    border: 1px solid var(--blue);
     background-color: aliceblue;
     border-radius: 25px;
   }
-
-  }
+}
 
 @media screen and (min-width: 600px) {
   .addressBox {
